@@ -18,22 +18,32 @@ interface Doclet{
     + run(environment : DocletEnvironment) : boolean
 }
 
-Class Class{
+class Class{
     + getSimpleName() : Class
 }
 
-Class Collection{
+FirstDoclet "recupere le nom" ------> Class : >
+
+class Collection{
     + {static}emptySet() : java.util.set
 }
+
+FirstDoclet "recupere les options" ------> Collection : >
 
 enum SourceVersion{
     + {static}latest() : SourceVersion
 }
 
+FirstDoclet "verifie la version" -> SourceVersion : >
+
 interface DocletEnvironment{
     + {abstract}getSpecifiedElements() :  java.util.Set<? extends javax.lang.model.element.Element>
     + {abstract}getIncludedElements() :  java.util.Set<? extends javax.lang.model.element.Element>
 }
+
+FirstDoclet "recupere nom du package" --> DocletEnvironment : >
+FirstDoclet "recupere les classes" --> DocletEnvironment: >
+
 
 interface Element extends AnnotatedConstruct{
     + {abstract}getKind() : ElementKind
@@ -42,4 +52,12 @@ interface Element extends AnnotatedConstruct{
     + {abstract}getEnclosedElements() : Element
     + {abstract}getModifiers() : Modifiers
 }
+
+FirstDoclet "le type" -> Element
+FirstDoclet "le nom" -> Element
+FirstDoclet "le Package" -> Element
+FirstDoclet "le fonctions" -> Element
+FirstDoclet "le visibilité" -> Element
+
+
 @enduml
