@@ -1,0 +1,22 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+skinparam classAttributeIconSize 0
+skinparam classFontStyle Bold
+skinparam style strictuml
+
+' Class: permet de récuperer le .Class qui récupère les noms des class
+class Class {}
+
+' appelle class
+class FirstDoclet implements Doclet{}
+
+'
+interface Element extends AnnotatedConstruct{}
+' on va chercher dans first class le get name de class
+interface DocletEnvironment {}
+
+FirstDoclet "récupère le nom" --> Class : >
+FirstDoclet "renvoie le nom" <-- Class : >
+DocletEnvironment "demande le nom" ---> FirstDoclet:>
+
+@enduml
