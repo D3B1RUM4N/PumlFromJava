@@ -6,6 +6,7 @@ import jdk.javadoc.doclet.Reporter;
 
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
+import javax.lang.model.element.ElementKind;
 import java.util.Collections;
 import java.util.Locale;
 import java.util.Set;
@@ -87,6 +88,10 @@ public class PumlDoclet implements Doclet {
                 "@enduml" + lineSeparator();
 
         System.out.println(ecriture);
+
+        PumlDiagram uml = new PumlDiagram();
+        uml.ecriturePUML(ecriture);
+
         return true;
     }
 
@@ -96,18 +101,26 @@ public class PumlDoclet implements Doclet {
         System.out.println("element: " + element);
         System.out.println("kind: " + element.getKind());
         System.out.println("simpleName: " + element.getSimpleName());
-        System.out.println("enclosingElement: " + element.getEnclosingElement());
+        System.out.println("enclosingElement: " + element.getEnclosingElement());   //return western
         System.out.println("enclosedElement: " + element.getEnclosedElements());
         System.out.println("modifiers: " + element.getModifiers());
         System.out.println();*/
 
 
         String res = "";
-        for(Element methode : element.getEnclosedElements()){
-            res += methode + " ";
+
+        if(element.getKind() != ElementKind.PACKAGE){
+            if(element.getKind() != ElementKind.MODULE){
+                res += element.getKind() + " " + element.getSimpleName() + "{" + lineSeparator();
+                res += "}";
+            }
         }
-        res += element.getKind() + " " + element.getSimpleName() + lineSeparator()
-                + element.getEnclosingElement().toString().replace(' ', '\n');
+
+
+        /*for(Element methode : element.getEnclosedElements()){
+            res+= methode + lineSeparator();
+        }*/
+
 
         return res;
 
