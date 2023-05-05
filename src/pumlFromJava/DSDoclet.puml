@@ -1,0 +1,44 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+
+
+Java2Puml -> javadoc: javadoc -private -sourcepath[...]
+javadoc -> FirstDoclet: init(Locale, Reporter)
+javadoc -> FirstDoclet ++: getName()
+return getClass().getSimpleName
+
+javadoc -> FirstDoclet++: getSupportedOptions()
+return Collection.emptySet()
+
+javadoc -> FirstDoclet++: getSupportedSourceVersion()
+return SourceVersion.latest()
+
+javadoc -> FirstDoclet++: run(DocletEnvironment)
+
+    FirstDoclet -> FirstDoclet++ :getName()
+    return println(getName())
+    FirstDoclet -> DocletEnvironment++ : getIncludedElements()
+    return println(environment.getSpecifiedElements())
+    FirstDoclet -> DocletEnvironment ++: getIncludedElements()
+    return println(environment.getIncludedElements())
+    loop for each element in getSpecifiedElements()
+        FirstDoclet -> DocletEnvironment ++: getSpecifiedElements()
+        return element = getSpecifiedElements()
+        FirstDoclet -> FirstDoclet++: dumpElement(element)
+            FirstDoclet -> Element++: getKind()
+            return println()
+            FirstDoclet -> Element++: getSimpleName()
+            return println()
+            FirstDoclet -> Element++: getEnclosingElement()
+            return println()
+            FirstDoclet -> Element++: getEnclosedElements()
+            return println()
+            FirstDoclet -> Element++: getModifiers()
+            return println()
+        FirstDoclet --
+    end
+FirstDoclet --
+@enduml
