@@ -60,10 +60,11 @@ public class FirstDoclet implements Doclet {
         // In this case, it just prints out the names of the
         // elements specified on the command line.
         System.out.println(this.getName());
-        System.out.println(environment.getSpecifiedElements());
-        System.out.println(environment.getIncludedElements());
+        System.out.println(environment.getSpecifiedElements()); //nom du package
+        System.out.println(environment.getIncludedElements());  //toutes les class du package
         for (Element element : environment.getSpecifiedElements())
         {
+            //System.out.println("uwu");
             dumpElement(element);
         }
         return true;
