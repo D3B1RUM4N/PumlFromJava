@@ -8,9 +8,11 @@ public class Java2Puml
 
     public static void main(String[] args)
     {
+        System.out.println("/////////////// 1");
         ToolProvider toolProvider = ToolProvider.findFirst("javadoc").get();
         System.out.println(toolProvider.name());
-        System.out.println(args);
+        System.out.println("/////2");
+        //System.out.println(args);
 
 /*
     javadoc -private -sourcepath <src> -doclet pumlFromJava.FirstDoclet -docletpath out/production/<projet>

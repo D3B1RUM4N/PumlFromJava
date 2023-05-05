@@ -1,0 +1,39 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+skinparam style strictuml
+
+class FirstDoclet implements Doclet{
+    + getName() : String {Redefine Doclet::getName}
+    + getSupportedOptions(): Set<? extends Option>
+    + getSupportedSourceVersion() : SourceVersion
+    + run(environment : DocletEnvironment) : boolean {Redefine Doclet::run}
+    + dumpElement(element : Element)
+}
+
+interface Doclet{
+    + getName() : String
+    + getSupportedOptions(): Set<? extends Option>
+    + getSupportedSourceVersion() : SourceVersion
+    + run(environment : DocletEnvironment) : boolean
+}
+
+Class Class{
+    + getSimpleName() : Class
+}
+
+Class Collection{
+    + {static}emptySet() : java.util.set
+}
+
+enum SourceVersion{
+    + {static}latest() : SourceVersion
+}
+
+interface DocletEnvironment{
+    + {abstract}getSpecifiedElements() :  java.util.Set<? extends javax.lang.model.element.Element>
+    + {abstract}getIncludedElements() :  java.util.Set<? extends javax.lang.model.element.Element>
+    +
+
+}
+@enduml
