@@ -107,7 +107,7 @@ public class PumlDoclet implements Doclet {
         System.out.println();*/
 
 
-        String res = "";
+       String res = "";
 
         if(element.getKind() != ElementKind.PACKAGE){
             if(element.getKind() != ElementKind.MODULE){
