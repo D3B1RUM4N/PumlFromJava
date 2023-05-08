@@ -10,13 +10,29 @@ class Class {}
 ' appelle class
 class FirstDoclet implements Doclet{}
 
-'
 interface Element extends AnnotatedConstruct{}
 ' on va chercher dans first class le get name de class
 interface DocletEnvironment {}
 
-FirstDoclet "récupère le nom" --> Class : >
-FirstDoclet "renvoie le nom" <-- Class : >
-DocletEnvironment "demande le nom" ---> FirstDoclet:>
+class Collection{}
+
+enum SourceVersion{}
+
+' Désolée après une heure à bouger les flèches dans tous les sens
+' JSe n'ai pas réussi faire plus visible que ca :)
+
+FirstDoclet "récupère le\n nom" -u-> Class : >
+FirstDoclet "renvoie\nle nom" <-u- Class : >
+DocletEnvironment "demande le nom" ---u-> FirstDoclet:>
+FirstDoclet "recupere\n les\n options" ---l-> Collection : >
+FirstDoclet "\n\nverifie \nla \nversion" --r> SourceVersion : >
+FirstDoclet "recupere \nnom du \npackage" --> DocletEnvironment : >
+
+
+FirstDoclet "le type" --> Element :>
+FirstDoclet "le nom" --> Element :>
+FirstDoclet "le Package" --> Element :>
+FirstDoclet "le fonctions" -d--> Element :>
+FirstDoclet "le visibilité" --> Element :>
 
 @enduml

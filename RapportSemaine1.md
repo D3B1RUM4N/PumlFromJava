@@ -17,5 +17,5 @@ On a travaillé sur une bonne partie des différents diagrammes : DCA et DCC.
 
 Elies : toute la partie code (génération de l'UML) et le diagramme de séquence.
 
-Eléa  : toute la partie diagrammes (DCC et DCA) et réalisation du rapport.
+Eléa  : toute la partie diagrammes (DCC et DCA) et réalisation du rapport. 
 
