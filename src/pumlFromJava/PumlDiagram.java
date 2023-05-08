@@ -9,10 +9,10 @@ public class PumlDiagram {
     public PumlDiagram() {}
 
 
-    public void ecriturePUML(String val)
+    public void ecriturePUML(String val, String name, String dir)
     {
         String stringVal = val;
-        Path path = Paths.get("classUML.puml");
+        Path path = Paths.get(dir+name);
         try {
             //String str = "Test creation \n Hello W0rld";
             byte[] bs = stringVal.getBytes();

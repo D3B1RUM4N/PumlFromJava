@@ -1,5 +1,6 @@
 package pumlFromJava;
 
+import jdk.internal.icu.text.UnicodeSet;
 import jdk.javadoc.doclet.Doclet;
 import jdk.javadoc.doclet.DocletEnvironment;
 import jdk.javadoc.doclet.Reporter;
@@ -7,9 +8,7 @@ import jdk.javadoc.doclet.Reporter;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.ElementKind;
-import java.util.Collections;
-import java.util.Locale;
-import java.util.Set;
+import java.util.*;
 
 import static java.lang.System.lineSeparator;
 
@@ -32,6 +31,10 @@ public class PumlDoclet implements Doclet {
     @Override
     public void init(Locale locale, Reporter reporter) {  }
 
+
+
+
+
     @Override
     public String getName() {
         // For this doclet, the name of the doclet is just the
@@ -40,11 +43,94 @@ public class PumlDoclet implements Doclet {
         // help when doclet-specific options are provided.
         return getClass().getSimpleName();
     }
-
+    private String fileName = "classUML.puml";
+    private String dir = "./";
     @Override
     public Set<? extends Option> getSupportedOptions() {
-        // This doclet does not support any options.
-        return Collections.emptySet();
+
+        HashSet<Option> options = new HashSet<Option>();
+        options.add(new Option() {
+
+            @Override
+            public int getArgumentCount() {
+                return 1;
+            }
+
+            @Override
+            public String getDescription() {
+                return "choose the .puml name";
+            }
+
+            @Override
+            public Kind getKind() {
+                return Kind.EXTENDED;
+            }
+
+            @Override
+            public List<String> getNames() {
+                List<String> names = new ArrayList<>();
+                names.add("-out");
+                return names;
+            }
+
+            @Override
+            public String getParameters() {
+                return "name";
+            }
+
+            @Override
+            public boolean process(String option, List<String> arguments) {
+                if(arguments.get(0).isEmpty()){
+                    fileName = "classUML";
+                    System.out.println("askip je suis empty " + arguments.get(0));
+                }
+                else if(!arguments.get(0).contains(".puml")) fileName = arguments.get(0) + ".puml";
+                else fileName = arguments.get(0);
+
+                return true;
+            }
+        });
+        options.add(new Option() {
+            @Override
+            public int getArgumentCount() {
+                return 1;
+            }
+
+            @Override
+            public String getDescription() {
+                return "for the .puml Directory";
+            }
+
+            @Override
+            public Kind getKind() {
+                return Kind.STANDARD;
+            }
+
+            @Override
+            public List<String> getNames() {
+                List<String> names = new ArrayList<String>();
+                names.add("-d");
+                names.add("-directory");
+                return names;
+            }
+
+            @Override
+            public String getParameters() {
+                return "directory";
+            }
+
+            @Override
+            public boolean process(String option, List<String> arguments) {
+
+                if(!arguments.get(0).endsWith("/")) dir = arguments.get(0) + "/";
+                else dir = arguments.get(0);
+
+                return true;
+            }
+        });
+
+
+        return options;
     }
 
     @Override
@@ -62,6 +148,7 @@ public class PumlDoclet implements Doclet {
         // This method is called to perform the work of the doclet.
         // In this case, it just prints out the names of the
         // elements specified on the command line.
+        System.out.println("///////////////:3+");
         System.out.println(this.getName());
         System.out.println(environment.getSpecifiedElements()); //nom du package
         System.out.println(environment.getIncludedElements());  //toutes les class du package
@@ -89,8 +176,11 @@ public class PumlDoclet implements Doclet {
 
         System.out.println(ecriture);
 
+
         PumlDiagram uml = new PumlDiagram();
-        uml.ecriturePUML(ecriture);
+        uml.ecriturePUML(ecriture, fileName, dir);
+
+        System.out.println(dir+fileName);
 
         return true;
     }

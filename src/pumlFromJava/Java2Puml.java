@@ -18,6 +18,20 @@ public class Java2Puml
     javadoc -private -sourcepath <src> -doclet pumlFromJava.FirstDoclet -docletpath out/production/<projet>
       <package> ... <fichiers>
  */
+
+        /* MES PARAMETTRES :
+            -sourcepath
+            src/
+            -out
+            testestest.puml
+            -d
+            ../
+            -doclet
+            pumlFromJava.PumlDoclet
+            -docletpath
+            out/production/p21_projet/
+            western
+         */
         toolProvider.run(System.out, System.err, args);
     }
 }
