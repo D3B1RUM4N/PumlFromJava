@@ -19,3 +19,6 @@ Elies : toute la partie code (génération de l'UML) et le diagramme de séquenc
 
 Eléa  : toute la partie diagrammes (DCC et DCA) et réalisation du rapport. 
 
+De plus, les paramètres utilisés pour exécuter le programme sont en commentaires dans le Java2Puml.java .
+Les diagrammes se trouvent dans src/pumlFromJava .
+
