@@ -1,0 +1,41 @@
+@startuml
+
+'UML GENERE PAR CODE :)
+
+skinparam style strictuml
+skinparam classAttributeIconSize 0
+skinparam classFontStyle Bold
+hide empty members
+
+@startuml
+
+'UML GENERE PAR CODE :)
+
+skinparam style strictuml
+skinparam classAttributeIconSize 0
+skinparam classFontStyle Bold
+hide empty members
+
+
+
+PACKAGE pumlFromJava{
+
+	CLASS FirstDoclet{
+	}
+
+	CLASS Java2Puml{
+	}
+
+	CLASS PumlDiagram{
+		stringVal
+	}
+
+	CLASS PumlDoclet{
+		fileName
+		dir
+		newPackage
+		havePackage
+	}
+
+}
+@enduml

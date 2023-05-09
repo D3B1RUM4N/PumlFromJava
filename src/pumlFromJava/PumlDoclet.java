@@ -1,6 +1,5 @@
 package pumlFromJava;
 
-import jdk.internal.icu.text.UnicodeSet;
 import jdk.javadoc.doclet.Doclet;
 import jdk.javadoc.doclet.DocletEnvironment;
 import jdk.javadoc.doclet.Reporter;
@@ -153,16 +152,8 @@ public class PumlDoclet implements Doclet {
         System.out.println(environment.getSpecifiedElements()); //nom du package
         System.out.println(environment.getIncludedElements());  //toutes les class du package
 
-        //debut ecriture
-        String ecriture = "@startuml" + lineSeparator() +
-                lineSeparator() +
-                "'UML GENERE PAR CODE :)" + lineSeparator() +
-                lineSeparator() +
-                "skinparam style strictuml" + lineSeparator() +
-                "skinparam classAttributeIconSize 0" + lineSeparator() +
-                "skinparam classFontStyle Bold" + lineSeparator() +
-                "hide empty members" + lineSeparator() +
-                lineSeparator();
+
+        String ecriture = "";
 
         for (Element element : environment.getIncludedElements())
         {
@@ -170,11 +161,11 @@ public class PumlDoclet implements Doclet {
             //System.out.println("uwu");
             ecriture += dumpElement(element) + lineSeparator();
         }
+        if(havePackage) ecriture += "}";
 
-        ecriture += lineSeparator() +
-                "@enduml" + lineSeparator();
 
-        System.out.println(ecriture);
+
+        //System.out.println(ecriture);
 
 
         PumlDiagram uml = new PumlDiagram();
@@ -185,6 +176,8 @@ public class PumlDoclet implements Doclet {
         return true;
     }
 
+    private boolean newPackage = false;
+    private boolean havePackage = false;
     private String dumpElement(Element element)
     {
         /*System.out.print("---- ");
@@ -198,17 +191,32 @@ public class PumlDoclet implements Doclet {
 
 
         String res = "";
-
-        if(element.getKind() != ElementKind.PACKAGE){
+        if(element.getKind() == ElementKind.PACKAGE){
+            havePackage = true;
+            if(newPackage) {
+                res+= lineSeparator() + "}";
+                newPackage = false;
+            }
+            res += lineSeparator()+
+                    element.getKind() + " " + element.getSimpleName() + "{" + lineSeparator();
+            newPackage = true;
+        }
+        else{
             if(element.getKind() != ElementKind.MODULE){
-                res += element.getKind() + " " + element.getSimpleName() + "{" + lineSeparator();
-                res += "}";
+                res += "\t" + element.getKind() + " " + element.getSimpleName() + "{" + lineSeparator();
+                for(Element methode : element.getEnclosedElements()){
+                    if(methode.getKind() == ElementKind.FIELD){
+                        res += "\t\t";
+                        res += methode + lineSeparator();
+                    }
+                }
+                res += "\t" + "}" + lineSeparator();
             }
         }
 
 
         /*for(Element methode : element.getEnclosedElements()){
-            res+= methode + lineSeparator();
+            System.out.println("methode " + methode + methode.getKind() + lineSeparator());
         }*/
 
 

@@ -2,6 +2,7 @@ P21-P22 SAE21 2023
 Elies Mekhinini et Eléa Menu TP2
 
 Rapport Semaine 1
+(voir branche : Semaine1)
 ---
 
 #### TP du 04/05 :
@@ -17,5 +18,8 @@ On a travaillé sur une bonne partie des différents diagrammes : DCA et DCC.
 
 Elies : toute la partie code (génération de l'UML) et le diagramme de séquence.
 
-Eléa  : toute la partie diagrammes (DCC et DCA) et réalisation du rapport.
+Eléa  : toute la partie diagrammes (DCC et DCA) et réalisation du rapport. 
+
+De plus, les paramètres utilisés pour exécuter le programme sont en commentaires dans le Java2Puml.java .
+Les diagrammes se trouvent dans src/pumlFromJava .
 

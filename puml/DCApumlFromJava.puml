@@ -1,0 +1,35 @@
+@startuml
+
+'UML GENERE PAR CODE :)
+
+skinparam style strictuml
+skinparam classAttributeIconSize 0
+skinparam classFontStyle Bold
+hide empty members
+
+
+
+PACKAGE pumlFromJava{
+
+
+	CLASS Java2Puml{
+	}
+
+	CLASS PumlDiagram{
+		stringVal
+	}
+
+	CLASS PumlDoclet{
+		fileName
+		dir
+		newPackage
+		havePackage
+	}
+
+	Java2Puml "appel javadoc" --l> PumlDoclet :>
+	PumlDoclet "envoi le string" ---> PumlDiagram :>
+
+
+
+}
+@enduml
