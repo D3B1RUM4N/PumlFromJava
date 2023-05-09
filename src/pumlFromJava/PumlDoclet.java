@@ -1,6 +1,5 @@
 package pumlFromJava;
 
-import jdk.internal.icu.text.UnicodeSet;
 import jdk.javadoc.doclet.Doclet;
 import jdk.javadoc.doclet.DocletEnvironment;
 import jdk.javadoc.doclet.Reporter;
@@ -153,16 +152,8 @@ public class PumlDoclet implements Doclet {
         System.out.println(environment.getSpecifiedElements()); //nom du package
         System.out.println(environment.getIncludedElements());  //toutes les class du package
 
-        //debut ecriture
-        String ecriture = "@startuml" + lineSeparator() +
-                lineSeparator() +
-                "'UML GENERE PAR CODE :)" + lineSeparator() +
-                lineSeparator() +
-                "skinparam style strictuml" + lineSeparator() +
-                "skinparam classAttributeIconSize 0" + lineSeparator() +
-                "skinparam classFontStyle Bold" + lineSeparator() +
-                "hide empty members" + lineSeparator() +
-                lineSeparator();
+
+        String ecriture = "";
 
         for (Element element : environment.getIncludedElements())
         {
@@ -172,8 +163,7 @@ public class PumlDoclet implements Doclet {
         }
         if(havePackage) ecriture += "}";
 
-        ecriture += lineSeparator() +
-                "@enduml" + lineSeparator();
+
 
         //System.out.println(ecriture);
 

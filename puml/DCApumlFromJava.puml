@@ -7,21 +7,10 @@ skinparam classAttributeIconSize 0
 skinparam classFontStyle Bold
 hide empty members
 
-@startuml
-
-'UML GENERE PAR CODE :)
-
-skinparam style strictuml
-skinparam classAttributeIconSize 0
-skinparam classFontStyle Bold
-hide empty members
-
 
 
 PACKAGE pumlFromJava{
 
-	CLASS FirstDoclet{
-	}
 
 	CLASS Java2Puml{
 	}
@@ -36,6 +25,11 @@ PACKAGE pumlFromJava{
 		newPackage
 		havePackage
 	}
+
+	Java2Puml "appel javadoc" --l> PumlDoclet :>
+	PumlDoclet "envoi le string" ---> PumlDiagram :>
+
+
 
 }
 @enduml

@@ -15,7 +15,7 @@ PACKAGE western{
 		substantif
 		EAU
 		boissons
-																	}
+	}
 
 	CLASS Brigand{
 		LOOK_PAR_DEFAUT
@@ -24,51 +24,51 @@ PACKAGE western{
 		estLibre
 		captives
 		gardien
-																										boissonParDefaut
-					}
+		boissonParDefaut
+	}
 
 	CLASS Cowboy{
 		gains
 		captures
-																		boissonParDefaut
-					}
+		boissonParDefaut
+	}
 
 	CLASS Dame{
 		estLibre
 		sauveur
 		ravisseur
-																boissonParDefaut
-							}
+		boissonParDefaut
+	}
 
 	ENUM Genre{
-											}
+	}
 
 	CLASS Histoire4{
-					}
+	}
 
 	INTERFACE HorsLaLoi{
-															}
+	}
 
 	CLASS Narrateur{
-													}
+	}
 
 	INTERFACE Nommable{
-					}
+	}
 
 	CLASS Personnage{
 		BOISSON_PAR_DEFAUT
 		nom
 		boisson
-																					}
+	}
 
 	CLASS Ripou{
 		brigand
-																											}
+	}
 
 	CLASS Substantif{
 		nom
 		genre
-																																			}
+	}
 
 }
 @enduml
