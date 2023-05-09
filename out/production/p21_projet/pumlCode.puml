@@ -1,0 +1,74 @@
+@startuml
+
+'UML GENERE PAR CODE :)
+
+skinparam style strictuml
+skinparam classAttributeIconSize 0
+skinparam classFontStyle Bold
+hide empty members
+
+
+
+PACKAGE western{
+
+	CLASS Boisson{
+		substantif
+		EAU
+		boissons
+																	}
+
+	CLASS Brigand{
+		LOOK_PAR_DEFAUT
+		look
+		recompense
+		estLibre
+		captives
+		gardien
+																										boissonParDefaut
+					}
+
+	CLASS Cowboy{
+		gains
+		captures
+																		boissonParDefaut
+					}
+
+	CLASS Dame{
+		estLibre
+		sauveur
+		ravisseur
+																boissonParDefaut
+							}
+
+	ENUM Genre{
+											}
+
+	CLASS Histoire4{
+					}
+
+	INTERFACE HorsLaLoi{
+															}
+
+	CLASS Narrateur{
+													}
+
+	INTERFACE Nommable{
+					}
+
+	CLASS Personnage{
+		BOISSON_PAR_DEFAUT
+		nom
+		boisson
+																					}
+
+	CLASS Ripou{
+		brigand
+																											}
+
+	CLASS Substantif{
+		nom
+		genre
+																																			}
+
+}
+@enduml
