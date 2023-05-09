@@ -155,17 +155,16 @@ public class PumlDoclet implements Doclet {
 
         String ecriture = "";
 
+
         for (Element element : environment.getIncludedElements())
         {
+            if(element.getKind() == ElementKind.PACKAGE){
+                Package pack = new Package(element);
+                ecriture += pack.toString();
+            }
+            System.out.println(ecriture);
 
-            //System.out.println("uwu");
-            ecriture += dumpElement(element) + lineSeparator();
         }
-        if(havePackage) ecriture += "}";
-
-
-
-        //System.out.println(ecriture);
 
 
         PumlDiagram uml = new PumlDiagram();
