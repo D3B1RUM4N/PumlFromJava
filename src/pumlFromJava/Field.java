@@ -12,8 +12,7 @@ public class Field {
         this.methode = methode;
     }
 
-    @Override
-    public String toString(){
+    public String toDCA(){
         return methode.getSimpleName().toString();
     }
 

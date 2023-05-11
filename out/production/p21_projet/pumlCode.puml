@@ -7,7 +7,7 @@ skinparam classAttributeIconSize 0
 skinparam classFontStyle Bold
 hide empty members
 
-western{
+PACKAGE western{
 	CLASS Barman{
 		bar
 		clients

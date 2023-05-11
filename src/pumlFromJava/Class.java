@@ -13,8 +13,8 @@ public class Class {
         this.object = object;
     }
 
-    @Override
-    public String toString(){
+
+    public String toDCA(){
         String res = "\t" + object.getKind() + " " + object.getSimpleName() + "{" + lineSeparator();
 
 
@@ -23,7 +23,7 @@ public class Class {
 
             if(methode.getKind() == ElementKind.FIELD){
                 Field field = new Field(methode);
-                res += "\t\t" + field.toString() + lineSeparator();
+                res += "\t\t" + field.toDCA() + lineSeparator();
             }/*else if(methode.getKind() == ElementKind.CONSTRUCTOR){
 
             }else{
