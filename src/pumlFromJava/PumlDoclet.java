@@ -160,7 +160,7 @@ public class PumlDoclet implements Doclet {
         {
             if(element.getKind() == ElementKind.PACKAGE){
                 Package pack = new Package(element);
-                ecriture += pack.toString();
+                ecriture += pack.toDCA();
             }
             System.out.println(ecriture);
 

@@ -11,15 +11,14 @@ public class Package {
         this.pack = pack;
     }
 
-    @Override
-    public String toString(){
+    public String toDCA(){
         String res = pack.getKind() + " "  + pack.getSimpleName() + "{" + lineSeparator();
 
         for(Element object : pack.getEnclosedElements()){
             //System.out.println(object + " / " + object.getSimpleName() + " : " + object.getKind());
             if(object.getKind() == ElementKind.CLASS){
                 Class objectClass = new Class(object);
-                res += objectClass.toString() + lineSeparator() +
+                res += objectClass.toDCA() + lineSeparator() +
                         lineSeparator();
             } /*else if (object.getKind() == ElementKind.INTERFACE) {
 
