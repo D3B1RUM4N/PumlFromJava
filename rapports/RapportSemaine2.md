@@ -11,8 +11,12 @@ On a réalisé tout le contenu demandé pendant la semaine 2 durant ce TP.
 
 Le code gère maintenant les méthodes de type FIELD et les packages.
 
+Le code est maintenant sous forme de développement objet.
+
 ### Répartition des tâches
 
-Elies : génération du DCA sans les relations dans PumlDoclet.java
+Elies : génération du DCA sans les relations dans src/pumlFromJava/PumlDoclet.java
 
-Eléa  : création du DCC de l'API à partir de l'interface dans puml/DCCAPI.puml
+Eléa  : création du DCC de l'API à partir de l'interface dans puml/DCCAPI.puml et création du DCC à partir
+du pumlFromJava dans puml/DCCApiPumlFromJava.puml.
+

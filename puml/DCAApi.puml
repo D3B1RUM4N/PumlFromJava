@@ -5,62 +5,64 @@ skinparam classAttributeIconSize 0
 skinparam classFontStyle Bold
 skinparam style strictuml
 
-interface AnnotatedConstruct <<interface>>{
-    'A - the annotation interface
-    + {abstract}getAnnotation(Class<A> annotationType) : <A extends Annotation> A
-    + {abstract}getAnnotationMirrors() : List<? extends AnnotationMirror>
-    + {abstract}getAnnotationByType(Class<A> annotationType) : <A extends Annotation> A[]
+package model{
+    interface AnnotatedConstruct <<interface>>{
+        'A - the annotation interface
+        + {abstract}getAnnotation(Class<A> annotationType) : <A extends Annotation> A
+        + {abstract}getAnnotationMirrors() : List<? extends AnnotationMirror>
+        + {abstract}getAnnotationByType(Class<A> annotationType) : <A extends Annotation> A[]
+        }
+
+
+    interface Element <<interface>> extends AnnotatedConstruct{
+        + {abstract}accept(ElementVisitor<R,P> v, P p) : <R, P> R
+        + {abstract}asType() : TypeMirror
+        + {abstract}equals(Object obj) : Boolean
+        + {abstract}getKind() : ElementKind
+        + {abstract}getSimpleName() : Name
+        + {abstract}getEnclosingELement() : Element
+        + {abstract}getEnclosedElements() : Element
+        + {abstract}getModifiers() : Modifiers
+        + {abstract}hashCode() : Integer
     }
 
+    interface Annotation <<interface>>{
+        +{abstract}annotationType() : Class<? extends Annotation>
+        + {abstract}equals(Object obj) : Boolean
+        + {abstract}hashCode() : Integer
+        + {abstract}toString() : String
+    }
 
-interface Element <<interface>> extends AnnotatedConstruct{
-    + {abstract}accept(ElementVisitor<R,P> v, P p) : <R, P> R
-    + {abstract}asType() : TypeMirror
-    + {abstract}equals(Object obj) : Boolean
-    + {abstract}getKind() : ElementKind
-    + {abstract}getSimpleName() : Name
-    + {abstract}getEnclosingELement() : Element
-    + {abstract}getEnclosedElements() : Element
-    + {abstract}getModifiers() : Modifiers
-    + {abstract}hashCode() : Integer
-}
+    interface Name <<interface>> extends CharSequence{
+        +{abstract}contentEquals(CharSequence cs) : Boolean
+        +{abstract}equals(Object obj) : Boolean
+        +{abstract}hashCode() : Integer
+    }
 
-interface Annotation <<interface>>{
-    +{abstract}annotationType() : Class<? extends Annotation>
-    + {abstract}equals(Object obj) : Boolean
-    + {abstract}hashCode() : Integer
-    + {abstract}toString() : String
-}
+    enum SModifier {
+        +toString() : String
+        +{static}valueOf(String name) : Modifier
+        +{static}values() : Modifier[]
+    }
 
-interface Name <<interface>> extends CharSequence{
-    +{abstract}contentEquals(CharSequence cs) : Boolean
-    +{abstract}equals(Object obj) : Boolean
-    +{abstract}hashCode() : Integer
-}
+    enum ElementKind{
+        +isClass() : Boolean
+        +isDeclaredType() : Boolean
+        +isExecutable() : Boolean
+        +isField() : Boolean
+        +isInitializer() : Boolean
+        +isInterface() : Boolean
+        +isVariable() : Boolean
+        +{static}valueOf(String name) : ElementKind
+        +{static}values() : ElementKind[]
+    }
 
-enum SModifier {
-    +toString() : String
-    +{static}valueOf(String name) : Modifier
-    +{static}values() : Modifier[]
-}
-
-enum ElementKind{
-    +isClass() : Boolean
-    +isDeclaredType() : Boolean
-    +isExecutable() : Boolean
-    +isField() : Boolean
-    +isInitializer() : Boolean
-    +isInterface() : Boolean
-    +isVariable() : Boolean
-    +{static}valueOf(String name) : ElementKind
-    +{static}values() : ElementKind[]
-}
-
-interface TypeMirror <<interface>> extends AnnotatedConstruct{
-     + {abstract}accept(TypeVisitor <R,P> v, P p) : <R, P> R
-     + {abstract}equals(Object obj) : boolean
-     + {abstract}getKind() : TypeKind
-     + {abstract}hashCode() : Integer
-     + {abstract}toString() : String
+    interface TypeMirror <<interface>> extends AnnotatedConstruct{
+         + {abstract}accept(TypeVisitor <R,P> v, P p) : <R, P> R
+         + {abstract}equals(Object obj) : boolean
+         + {abstract}getKind() : TypeKind
+         + {abstract}hashCode() : Integer
+         + {abstract}toString() : String
+    }
 }
 @enduml
