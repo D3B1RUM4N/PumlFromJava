@@ -7,40 +7,84 @@ skinparam classAttributeIconSize 0
 skinparam classFontStyle Bold
 hide empty members
 
-PACKAGE pumlFromJava{
-	CLASS Class{
-		object
+PACKAGE western{
+	CLASS Barman{
+		bar
+		clients
 	}
 
 
-	CLASS Field{
-		methode
+	CLASS Boisson{
+		substantif
+		EAU
+		boissons
 	}
 
 
-	CLASS FirstDoclet{
+	CLASS Brigand{
+		LOOK_PAR_DEFAUT
+		look
+		recompense
+		estLibre
+		captives
+		gardien
+		boissonParDefaut
 	}
 
 
-	CLASS Java2Puml{
+	CLASS Cowboy{
+		gains
+		captures
+		boissonParDefaut
 	}
 
 
-	CLASS Package{
-		pack
+	CLASS Dame{
+		estLibre
+		sauveur
+		ravisseur
+		boissonParDefaut
 	}
 
 
-	CLASS PumlDiagram{
-		stringVal
+	CLASS Histoire4{
 	}
 
 
-	CLASS PumlDoclet{
-		fileName
-		dir
-		newPackage
-		havePackage
+	CLASS Histoire5{
+		luke
+		averell
+		scarlett
+		narrateur
+	}
+
+
+	CLASS Narrateur{
+	}
+
+
+	CLASS Personnage{
+		BOISSON_PAR_DEFAUT
+		nom
+		boisson
+	}
+
+
+	CLASS Ripou{
+		brigand
+	}
+
+
+	CLASS Sherif{
+		wanted
+		ravisseur
+		captures
+	}
+
+
+	CLASS Substantif{
+		nom
+		genre
 	}
 
 
