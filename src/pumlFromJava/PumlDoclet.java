@@ -162,10 +162,10 @@ public class PumlDoclet implements Doclet {
                 Package pack = new Package(element);
                 ecriture += pack.toDCA();
             }
-            System.out.println(ecriture);
+
 
         }
-
+        System.out.println(ecriture);
 
         PumlDiagram uml = new PumlDiagram();
         uml.ecriturePUML(ecriture, fileName, dir);

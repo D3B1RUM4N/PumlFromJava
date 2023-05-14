@@ -16,19 +16,22 @@ public class Class {
 
     public String toDCA(){
         String res = "\t" + object.getKind() + " " + object.getSimpleName() + "{" + lineSeparator();
-
+        //System.out.println(object.getKind() + " " + object.getSimpleName() + " " + object.getEnclosedElements());
 
         for(Element methode : object.getEnclosedElements()){
-            //System.out.println(methode + " / " + methode.getSimpleName() + " : " + methode.getKind());
+            System.out.println(methode + " / " + methode.getSimpleName() + " : " + methode.getKind());
 
             if(methode.getKind() == ElementKind.FIELD){
                 Field field = new Field(methode);
                 res += "\t\t" + field.toDCA() + lineSeparator();
+            }else if(methode.getKind() == ElementKind.CLASS) {
+                System.out.println(object.getKind() + " " + object.getSimpleName() + " " + methode.getSimpleName());
             }/*else if(methode.getKind() == ElementKind.CONSTRUCTOR){
 
             }else{
 
             }*/
+
         }
 
         res += "\t}" + lineSeparator();

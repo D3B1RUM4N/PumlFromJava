@@ -14,6 +14,7 @@ public class Package {
     public String toDCA(){
         String res = pack.getKind() + " "  + pack.getSimpleName() + "{" + lineSeparator();
 
+
         for(Element object : pack.getEnclosedElements()){
             //System.out.println(object + " / " + object.getSimpleName() + " : " + object.getKind());
             if(object.getKind() == ElementKind.CLASS){
