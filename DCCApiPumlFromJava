@@ -1,0 +1,48 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+skinparam classAttributeIconSize 0
+skinparam classFontStyle Bold
+skinparam style strictuml
+
+class PumlDiagram{
+	- stringVal : String
+	+ ecriturePUML(String : val, String : name, String : dir) 
+}
+
+class Java2Puml{
+	
+}
+
+class PumlDoclet{
+	+ getName() : String
+	- fileName : String
+	- dir : String
+	+ getSupportedOptions(): Set<? extends Option>
+	+ getSupportedSourceVersion() : SourceVersion
+	+ run(DocletENvironment : environment) : Boolean
+	- newPackage : Boolean
+	- havePackage : Boolean
+	- dumpElement(Element : element) : String
+}
+
+class Package{
+	
+	+toDCA() : String 
+}
+
+class Class{
+	+
+	+toDCA() : String
+	
+}
+
+class Field{
+	
+}
+
+
+
+
+
+@enduml
