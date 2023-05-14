@@ -1,0 +1,60 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+skinparam classAttributeIconSize 0
+skinparam classFontStyle Bold
+skinparam style strictuml
+
+package pumlFromJava{
+    class PumlDiagram{
+        - stringVal : String
+        + ecriturePUML(String : val, String : name, String : dir)
+    }
+
+    class Java2Puml{
+
+    }
+
+    class PumlDoclet{
+        + getName() : String
+        - fileName : String
+        - dir : String
+        + getSupportedOptions(): Set<? extends Option>
+        + getSupportedSourceVersion() : SourceVersion
+        + run(DocletENvironment : environment) : Boolean
+        - newPackage : Boolean
+        - havePackage : Boolean
+        - dumpElement(Element : element) : String
+    }
+
+    class Package{
+        -pack : Element
+        +<<Create>>Package(Element : pack)
+        +toDCA() : String
+    }
+
+    class Class{
+        -object : Element
+        +<<Create>>Class(Element : object)
+        +toDCA() : String
+
+    }
+
+    class Field{
+        -methode : Element
+        +<<Create>>Field:(Element : methode)
+        +toDCA(): String
+
+    }
+
+    PumlDiagram <-r- Java2Puml : Donne le fichier à écrire,\n le directory et le nom du fichier
+    Java2Puml --r> PumlDoclet : appelle JavaDoc
+    PumlDoclet --> Package : récupère le package
+    Package --> Class : récupère la class
+    Class --> Field : récupère les méthodes
+
+}
+
+
+
+@enduml
