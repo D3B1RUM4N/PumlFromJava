@@ -47,6 +47,7 @@ PACKAGE western{
 	}
 
 
+	ENUM Genre<<enum>>{
 	CLASS Histoire4{
 	}
 
@@ -59,8 +60,14 @@ PACKAGE western{
 	}
 
 
+	INTERFACE HorsLaLoi<<interface>>{
+
+
 	CLASS Narrateur{
 	}
+
+
+	INTERFACE Nommable<<interface>>{
 
 
 	CLASS Personnage{

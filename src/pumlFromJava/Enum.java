@@ -9,15 +9,14 @@ import static java.lang.System.lineSeparator;
 import javax.lang.model.element.Element;
 
 
-
-public class Interface {
+public class Enum {
     Element object;
-    public Interface(Element object){
+    public Enum(Element object){
         this.object = object;
     }
 
     public String toDCA(){
-        String res ="\t" + object.getKind()+ " " + object.getSimpleName() + "<<interface>>" + "{" + lineSeparator();
+        String res ="\t" + object.getKind()+ " " + object.getSimpleName() + "<<enum>>" + "{" + lineSeparator();
 
         for(Element methode : object.getEnclosedElements()){
             System.out.println(methode + " / " + methode.getSimpleName() + " : " + methode.getKind());
@@ -37,6 +36,4 @@ public class Interface {
 
         return res;
     }
-
-
 }

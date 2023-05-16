@@ -26,7 +26,8 @@ public class Package {
                 res += objectInterface.toDCA() +lineSeparator() +
                         lineSeparator();
             } else if (object.getKind() == ElementKind.ENUM) {
-
+                Enum objectEnum = new Enum(object);
+                res += objectEnum.toDCA();
             }
         }
         res += lineSeparator() +
