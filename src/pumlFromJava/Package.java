@@ -21,13 +21,13 @@ public class Package {
                 Class objectClass = new Class(object);
                 res += objectClass.toDCA() + lineSeparator() +
                         lineSeparator();
-            } /*else if (object.getKind() == ElementKind.INTERFACE) {
-
+            } else if (object.getKind() == ElementKind.INTERFACE) {
+                Interface objectInterface = new Interface(object);
+                res += objectInterface.toDCA() +lineSeparator() +
+                        lineSeparator();
             } else if (object.getKind() == ElementKind.ENUM) {
 
-            } else {            //pour les ENUM
-
-            }*/
+            }
         }
         res += lineSeparator() +
                 "}";
