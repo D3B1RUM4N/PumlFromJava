@@ -64,5 +64,7 @@ package model{
          + {abstract}hashCode() : Integer
          + {abstract}toString() : String
     }
+
+    interface VariableElement extends
 }
 @enduml
