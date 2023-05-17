@@ -20,13 +20,13 @@ public class Interface {
         String res ="\t" + object.getKind()+ " " + object.getSimpleName() + "<<interface>>" + "{" + lineSeparator();
 
         for(Element methode : object.getEnclosedElements()){
-            System.out.println(methode + " / " + methode.getSimpleName() + " : " + methode.getKind());
+            //System.out.println(methode + " / " + methode.getSimpleName() + " : " + methode.getKind());
 
             if(methode.getKind() == ElementKind.FIELD){
                 Field field = new Field(methode);
                 res += "\t\t" + field.toDCA() + lineSeparator();
             }else if(methode.getKind() == ElementKind.CLASS) {
-                System.out.println(object.getKind() + " " + object.getSimpleName() + " " + methode.getSimpleName());
+                //System.out.println(object.getKind() + " " + object.getSimpleName() + " " + methode.getSimpleName());
             }/*else if(methode.getKind() == ElementKind.CONSTRUCTOR){
 
             }else{
@@ -35,7 +35,8 @@ public class Interface {
 
         }
 
-        return res;
+        return res + lineSeparator() +
+                "\t}";
     }
 
 

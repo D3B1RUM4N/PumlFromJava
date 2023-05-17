@@ -8,20 +8,20 @@ skinparam classFontStyle Bold
 hide empty members
 
 PACKAGE western{
-	CLASS Barman{
+	CLASS Barman  extends western.Personnage {
 		bar
 		clients
 	}
 
 
-	CLASS Boisson{
+	CLASS Boisson  {
 		substantif
 		EAU
 		boissons
 	}
 
 
-	CLASS Brigand{
+	CLASS Brigand extends Personnage {
 		LOOK_PAR_DEFAUT
 		look
 		recompense
@@ -32,14 +32,14 @@ PACKAGE western{
 	}
 
 
-	CLASS Cowboy{
+	CLASS Cowboy  extends western.Personnage {
 		gains
 		captures
 		boissonParDefaut
 	}
 
 
-	CLASS Dame{
+	CLASS Dame  extends western.Personnage {
 		estLibre
 		sauveur
 		ravisseur
@@ -48,11 +48,14 @@ PACKAGE western{
 
 
 	ENUM Genre<<enum>>{
-	CLASS Histoire4{
+
+	}
+
+	CLASS Histoire4  {
 	}
 
 
-	CLASS Histoire5{
+	CLASS Histoire5  {
 		luke
 		averell
 		scarlett
@@ -62,34 +65,36 @@ PACKAGE western{
 
 	INTERFACE HorsLaLoi<<interface>>{
 
+	}
 
-	CLASS Narrateur{
+	CLASS Narrateur  extends western.Personnage {
 	}
 
 
 	INTERFACE Nommable<<interface>>{
 
+	}
 
-	CLASS Personnage{
+	CLASS Personnage  implements western.Nommable {
 		BOISSON_PAR_DEFAUT
 		nom
 		boisson
 	}
 
 
-	CLASS Ripou{
+	CLASS Ripou  extends western.Cowboy {
 		brigand
 	}
 
 
-	CLASS Sherif{
+	CLASS Sherif  extends western.Cowboy {
 		wanted
 		ravisseur
 		captures
 	}
 
 
-	CLASS Substantif{
+	CLASS Substantif  {
 		nom
 		genre
 	}

@@ -27,7 +27,8 @@ public class Package {
                         lineSeparator();
             } else if (object.getKind() == ElementKind.ENUM) {
                 Enum objectEnum = new Enum(object);
-                res += objectEnum.toDCA();
+                res += objectEnum.toDCA() + lineSeparator() +
+                        lineSeparator();
             }
         }
         res += lineSeparator() +

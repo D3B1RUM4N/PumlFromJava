@@ -165,7 +165,7 @@ public class PumlDoclet implements Doclet {
 
 
         }
-        System.out.println(ecriture);
+        //System.out.println(ecriture);
 
         PumlDiagram uml = new PumlDiagram();
         uml.ecriturePUML(ecriture, fileName, dir);

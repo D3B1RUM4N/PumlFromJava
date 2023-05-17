@@ -19,7 +19,7 @@ public class Enum {
         String res ="\t" + object.getKind()+ " " + object.getSimpleName() + "<<enum>>" + "{" + lineSeparator();
 
         for(Element methode : object.getEnclosedElements()){
-            System.out.println(methode + " / " + methode.getSimpleName() + " : " + methode.getKind());
+            //System.out.println(methode + " / " + methode.getSimpleName() + " : " + methode.getKind());
 
             if(methode.getKind() == ElementKind.FIELD){
                 Field field = new Field(methode);
@@ -34,6 +34,7 @@ public class Enum {
 
         }
 
-        return res;
+        return res + lineSeparator() +
+                "\t}";
     }
 }
