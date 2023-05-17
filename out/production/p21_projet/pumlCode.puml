@@ -21,7 +21,7 @@ PACKAGE western{
 	}
 
 
-	CLASS Brigand extends Personnage {
+	CLASS Brigand  extends western.Personnage implements western.HorsLaLoi {
 		LOOK_PAR_DEFAUT
 		look
 		recompense
@@ -47,7 +47,7 @@ PACKAGE western{
 	}
 
 
-	ENUM Genre<<enum>>{
+	ENUM Genre<<enum>> extends western.Genre{
 
 	}
 
@@ -63,7 +63,7 @@ PACKAGE western{
 	}
 
 
-	INTERFACE HorsLaLoi<<interface>>{
+	INTERFACE HorsLaLoi <<interface>>  implements western.Nommable{
 
 	}
 
@@ -71,7 +71,7 @@ PACKAGE western{
 	}
 
 
-	INTERFACE Nommable<<interface>>{
+	INTERFACE Nommable <<interface>> {
 
 	}
 
@@ -82,7 +82,7 @@ PACKAGE western{
 	}
 
 
-	CLASS Ripou  extends western.Cowboy {
+	CLASS Ripou  extends western.Cowboy implements western.HorsLaLoi {
 		brigand
 	}
 

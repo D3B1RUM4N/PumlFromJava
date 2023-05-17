@@ -7,7 +7,8 @@ import java.util.Optional;
 import static java.lang.System.lineSeparator;
 
 import javax.lang.model.element.Element;
-
+import javax.lang.model.element.TypeElement;
+import javax.lang.model.type.TypeMirror;
 
 
 public class Interface {
@@ -17,7 +18,16 @@ public class Interface {
     }
 
     public String toDCA(){
-        String res ="\t" + object.getKind()+ " " + object.getSimpleName() + "<<interface>>" + "{" + lineSeparator();
+        String res ="\t" + object.getKind()+ " " + object.getSimpleName()+ " <<interface>> ";
+
+        //pour les implementation et extends
+        TypeElement tObject = (TypeElement) object;
+        for(TypeMirror intrfc : tObject.getInterfaces()){
+            //System.out.println("interface " + intrfc.toString());
+            res += " implements " + intrfc.toString();
+        }
+        res+=  "{" + lineSeparator();
+
 
         for(Element methode : object.getEnclosedElements()){
             //System.out.println(methode + " / " + methode.getSimpleName() + " : " + methode.getKind());
