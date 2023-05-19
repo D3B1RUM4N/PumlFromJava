@@ -8,44 +8,43 @@ skinparam style strictuml
 package model{
     interface AnnotatedConstruct <<interface>>{
         'A - the annotation interface
-        + {abstract}getAnnotation(Class<A> annotationType) : <A extends Annotation> A
+        + {abstract}getAnnotation(annotationType : Class<A>) : <A extends Annotation> A
         + {abstract}getAnnotationMirrors() : List<? extends AnnotationMirror>
-        + {abstract}getAnnotationByType(Class<A> annotationType) : <A extends Annotation> A[]
+        + {abstract}getAnnotationByType(annotationType : Class<A>) : <A extends Annotation> A[]
         }
 
 
     interface Element <<interface>> extends AnnotatedConstruct{
-        + {abstract}accept(ElementVisitor<R,P> v, P p) : <R, P> R
         + {abstract}asType() : TypeMirror
-        + {abstract}equals(Object obj) : Boolean
+        + {abstract}equals(obj : Object) : Boolean
         + {abstract}getKind() : ElementKind
         + {abstract}getSimpleName() : Name
-        + {abstract}getEnclosingELement() : Element
+        + {abstract}getEnclosingElement() : Element
         + {abstract}getEnclosedElements() : Element
-        + {abstract}getModifiers() : Modifiers
+        + {abstract}getModifiers() : Modifier
         + {abstract}hashCode() : Integer
     }
 
     interface Annotation <<interface>>{
         +{abstract}annotationType() : Class<? extends Annotation>
-        + {abstract}equals(Object obj) : Boolean
+        + {abstract}equals(obj : Object) : Boolean
         + {abstract}hashCode() : Integer
         + {abstract}toString() : String
     }
 
     interface Name <<interface>> extends CharSequence{
-        +{abstract}contentEquals(CharSequence cs) : Boolean
-        +{abstract}equals(Object obj) : Boolean
+        +{abstract}contentEquals(cs : CharSequence) : Boolean
+        +{abstract}equals(obj : Object) : Boolean
         +{abstract}hashCode() : Integer
     }
 
-    enum SModifier {
+    enum Modifier <<enum>>{
         +toString() : String
-        +{static}valueOf(String name) : Modifier
+        +valueOf(name : String) : Modifier {static}
         +{static}values() : Modifier[]
     }
 
-    enum ElementKind{
+    enum ElementKind <<enum>>{
         +isClass() : Boolean
         +isDeclaredType() : Boolean
         +isExecutable() : Boolean
@@ -53,18 +52,35 @@ package model{
         +isInitializer() : Boolean
         +isInterface() : Boolean
         +isVariable() : Boolean
-        +{static}valueOf(String name) : ElementKind
+        +{static}valueOf(name : String) : ElementKind
         +{static}values() : ElementKind[]
     }
 
     interface TypeMirror <<interface>> extends AnnotatedConstruct{
-         + {abstract}accept(TypeVisitor <R,P> v, P p) : <R, P> R
-         + {abstract}equals(Object obj) : boolean
+         + {abstract}equals(obj : Object) : Boolean
          + {abstract}getKind() : TypeKind
          + {abstract}hashCode() : Integer
          + {abstract}toString() : String
     }
 
-    interface VariableElement extends
+    enum TypeKind <<enum>>{
+        + isPrimitive() : Boolean
+        +{static}valueOf(name : String) : TypeKind
+        +{static}values():TypeKind[]
+    }
+
+Element --> Element : getEnclosingElement()\ngetEnclosedElements()
+Element --> TypeMirror : asType()
+Element "1" o--> "*" Modifier : getModifiers()
+Element --> ElementKind : getKind()
+Element --> Name : getSimpleName()
+ElementKind --> ElementKind : valueOf(name)
+ElementKind "1" --> "*" ElementKind : values()
+TypeMirror --> TypeKind : getKind()
+TypeKind --> TypeKind : valueOf(name)
+TypeKind "1" --> "*" TypeKind : values()
+
+
+
 }
 @enduml

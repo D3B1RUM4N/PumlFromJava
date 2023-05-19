@@ -32,8 +32,6 @@ Boisson -- Boisson
 		gardien
 		boissonParDefaut
 	}
-Brigand -- int
-Brigand -- boolean
 Brigand -- Cowboy
 Brigand -- Boisson
 
@@ -43,7 +41,6 @@ Brigand -- Boisson
 		captures
 		boissonParDefaut
 	}
-Cowboy -- int
 Cowboy -- Boisson
 
 
@@ -53,7 +50,6 @@ Cowboy -- Boisson
 		ravisseur
 		boissonParDefaut
 	}
-Dame -- boolean
 Dame -- Cowboy
 Dame -- HorsLaLoi
 Dame -- Boisson
