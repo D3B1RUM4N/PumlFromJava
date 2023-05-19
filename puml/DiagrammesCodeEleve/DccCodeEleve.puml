@@ -8,7 +8,7 @@ skinparam style strictuml
 package pumlFromJava{
     class PumlDiagram{
         - stringVal : String
-        + ecriturePUML(String : val, String : name, String : dir)
+        + ecriturePUML(val : String, name : String, dir : String)
     }
 
     class Java2Puml{
@@ -21,37 +21,52 @@ package pumlFromJava{
         - dir : String
         + getSupportedOptions(): Set<? extends Option>
         + getSupportedSourceVersion() : SourceVersion
-        + run(DocletENvironment : environment) : Boolean
+        + run(environment : DocletEnvironment) : Boolean
         - newPackage : Boolean
         - havePackage : Boolean
-        - dumpElement(Element : element) : String
+        - dumpElement(element : Element) : String
     }
 
     class Package{
         -pack : Element
-        +<<Create>>Package(Element : pack)
+        +<<Create>>Package(pack : Element)
         +toDCA() : String
     }
 
     class Class{
         -object : Element
-        +<<Create>>Class(Element : object)
+        +agregations : ArrayList<String>
+        +<<Create>>Class(object : Element)
         +toDCA() : String
 
     }
 
     class Field{
         -methode : Element
-        +<<Create>>Field:(Element : methode)
+        +<<Create>>Field:(methode : Element)
         +toDCA(): String
+        +agreg():String
 
     }
 
-    PumlDiagram <-r- Java2Puml : Donne le fichier à écrire,\n le directory et le nom du fichier
-    Java2Puml --r> PumlDoclet : appelle JavaDoc
-    PumlDoclet --> Package : récupère le package
-    Package --> Class : récupère la class
-    Class --> Field : récupère les méthodes
+    class Enum{
+        -object : Element
+        +<<Create>>Enum:(element : Object)
+        +toDCA() : String
+
+    }
+
+    class Interface{
+        -object : Element
+        -<<Create>>Interface : (object : Element)
+        +toDCA() : String
+    }
+
+PumlDoclet "recupère le package" --> Package
+Package "recupère la class" --> Class
+Class "recupère les --methodes--" --> Field
+'Je sais que ça ne s'appelle pas méthode mais gros trou de mémoire
+PumlDoclet "Donne le fichier a ecrire,\n le directory et le nom du fichier" ---l-> PumlDiagram
 
 }
 

@@ -15,13 +15,7 @@ package model{
 
 
     interface Element <<interface>> extends AnnotatedConstruct{
-        + {abstract}asType() : TypeMirror
         + {abstract}equals(obj : Object) : Boolean
-        + {abstract}getKind() : ElementKind
-        + {abstract}getSimpleName() : Name
-        + {abstract}getEnclosingElement() : Element
-        + {abstract}getEnclosedElements() : Element
-        + {abstract}getModifiers() : Modifier
         + {abstract}hashCode() : Integer
     }
 
@@ -40,8 +34,7 @@ package model{
 
     enum Modifier <<enum>>{
         +toString() : String
-        +valueOf(name : String) : Modifier {static}
-        +{static}values() : Modifier[]
+
     }
 
     enum ElementKind <<enum>>{
@@ -52,21 +45,17 @@ package model{
         +isInitializer() : Boolean
         +isInterface() : Boolean
         +isVariable() : Boolean
-        +{static}valueOf(name : String) : ElementKind
-        +{static}values() : ElementKind[]
+
     }
 
     interface TypeMirror <<interface>> extends AnnotatedConstruct{
          + {abstract}equals(obj : Object) : Boolean
-         + {abstract}getKind() : TypeKind
          + {abstract}hashCode() : Integer
          + {abstract}toString() : String
     }
 
     enum TypeKind <<enum>>{
         + isPrimitive() : Boolean
-        +{static}valueOf(name : String) : TypeKind
-        +{static}values():TypeKind[]
     }
 
 Element --> Element : getEnclosingElement()\ngetEnclosedElements()
@@ -74,11 +63,13 @@ Element --> TypeMirror : asType()
 Element "1" o--> "*" Modifier : getModifiers()
 Element --> ElementKind : getKind()
 Element --> Name : getSimpleName()
-ElementKind --> ElementKind : valueOf(name)
+ElementKind --> ElementKind : valueOf(name : String)
 ElementKind "1" --> "*" ElementKind : values()
 TypeMirror --> TypeKind : getKind()
-TypeKind --> TypeKind : valueOf(name)
+TypeKind --> TypeKind : valueOf(name : String)
 TypeKind "1" --> "*" TypeKind : values()
+Modifier --> Modifier: valueOf(name : String)
+Modifier "1" --> "*" Modifier : values()
 
 
 

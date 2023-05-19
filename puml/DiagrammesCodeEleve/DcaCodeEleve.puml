@@ -12,26 +12,20 @@ PACKAGE pumlFromJava{
 		object
 	}
 
-
 	CLASS Field{
 		methode
 	}
 
-
-
 	CLASS Java2Puml{
 	}
-
 
 	CLASS Package{
 		pack
 	}
 
-
 	CLASS PumlDiagram{
 		stringVal
 	}
-
 
 	CLASS PumlDoclet{
 		fileName
@@ -40,17 +34,17 @@ PACKAGE pumlFromJava{
 		havePackage
 	}
 
+	 class Enum{
+        }
 
+     class Interface{
+        }
 
-
+PumlDoclet "recupère le package" --> Package
+Package "recupère la class" --> Class
+Class "recupère les --methodes--" --> Field
+'Je sais que ça ne s'appelle pas méthode mais gros trou de mémoire
+PumlDoclet "Donne le fichier a ecrire,\n le directory et le nom du fichier" ---l-> PumlDiagram
 
 }
-
-
-Java2Puml "appel Javadoc" -> PumlDoclet
-PumlDoclet "recupere le package" --> Package
-Package "recupere la class" --> Class
-Class "recupere les --methode--" --> Field
-'je sais que ça ne s'appel pas methode mais gros trou ed memoire
-Java2Puml "Donne le fichier a ecrire,\n le directory et le nom du fichier" -l> PumlDiagram
 @enduml
