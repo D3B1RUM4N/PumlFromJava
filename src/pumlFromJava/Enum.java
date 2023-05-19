@@ -11,26 +11,33 @@ import javax.lang.model.element.TypeElement;
 import javax.lang.model.type.TypeMirror;
 
 
-public class Interface {
+public class Enum {
     Element object;
-    public Interface(Element object){
+    public Enum(Element object){
         this.object = object;
     }
 
     public String toDCA(){
-        String res ="\t" + object.getKind()+ " " + object.getSimpleName()+ " <<interface>> ";
+        String res ="\t" + object.getKind()+ " " + object.getSimpleName() + "<<enum>>";
 
-        //pour les implementation et extends
         TypeElement tObject = (TypeElement) object;
 
+        /*if(!tObject.getSuperclass().toString().contains("java.lang.Object")){
+            //System.out.println("SuperClass " + tObject.getSuperclass());
+            res += " extends " + tObject.getSuperclass();
+        }*/
         for(TypeMirror intrfc : tObject.getInterfaces()){
             //System.out.println("interface " + intrfc.toString());
-            int lastIndex = intrfc.toString().lastIndexOf('.');
-            String s1 = (lastIndex != -1) ? intrfc.toString().substring(lastIndex + 1) : intrfc.toString();
-            res += " implements " + s1;
+            res += " implements " + intrfc.toString();
         }
-        res+=  "{" + lineSeparator();
 
+
+
+
+
+
+
+        res += "{" + lineSeparator();
 
         for(Element methode : object.getEnclosedElements()){
             //System.out.println(methode + " / " + methode.getSimpleName() + " : " + methode.getKind());
@@ -39,7 +46,7 @@ public class Interface {
                 Field field = new Field(methode);
                 res += "\t\t" + field.toDCA() + lineSeparator();
             }else if(methode.getKind() == ElementKind.CLASS) {
-                //System.out.println(object.getKind() + " " + object.getSimpleName() + " " + methode.getSimpleName());
+                System.out.println(object.getKind() + " " + object.getSimpleName() + " " + methode.getSimpleName());
             }/*else if(methode.getKind() == ElementKind.CONSTRUCTOR){
 
             }else{
@@ -51,6 +58,4 @@ public class Interface {
         return res + lineSeparator() +
                 "\t}";
     }
-
-
 }

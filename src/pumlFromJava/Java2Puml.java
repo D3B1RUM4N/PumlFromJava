@@ -23,7 +23,7 @@ public class Java2Puml
             -sourcepath
             src/
             -out
-            testestest.puml
+            pumlCode.puml
             -d
             ../
             -doclet
