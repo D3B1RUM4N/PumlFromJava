@@ -22,9 +22,12 @@ public class Interface {
 
         //pour les implementation et extends
         TypeElement tObject = (TypeElement) object;
+
         for(TypeMirror intrfc : tObject.getInterfaces()){
             //System.out.println("interface " + intrfc.toString());
-            res += " implements " + intrfc.toString();
+            int lastIndex = intrfc.toString().lastIndexOf('.');
+            String s1 = (lastIndex != -1) ? intrfc.toString().substring(lastIndex + 1) : intrfc.toString();
+            res += " implements " + s1;
         }
         res+=  "{" + lineSeparator();
 

@@ -8,7 +8,7 @@ skinparam classFontStyle Bold
 hide empty members
 
 PACKAGE western{
-	CLASS Barman  extends western.Personnage {
+	CLASS Barman  extends Personnage {
 		bar
 		clients
 	}
@@ -19,9 +19,11 @@ PACKAGE western{
 		EAU
 		boissons
 	}
+Boisson -- Substantif
+Boisson -- Boisson
 
 
-	CLASS Brigand  extends western.Personnage implements western.HorsLaLoi {
+	CLASS Brigand  extends Personnage implements HorsLaLoi {
 		LOOK_PAR_DEFAUT
 		look
 		recompense
@@ -30,24 +32,30 @@ PACKAGE western{
 		gardien
 		boissonParDefaut
 	}
+Brigand -- Cowboy
+Brigand -- Boisson
 
 
-	CLASS Cowboy  extends western.Personnage {
+	CLASS Cowboy  extends Personnage {
 		gains
 		captures
 		boissonParDefaut
 	}
+Cowboy -- Boisson
 
 
-	CLASS Dame  extends western.Personnage {
+	CLASS Dame  extends Personnage {
 		estLibre
 		sauveur
 		ravisseur
 		boissonParDefaut
 	}
+Dame -- Cowboy
+Dame -- HorsLaLoi
+Dame -- Boisson
 
 
-	ENUM Genre<<enum>> extends western.Genre{
+	ENUM Genre<<enum>>{
 
 	}
 
@@ -61,13 +69,17 @@ PACKAGE western{
 		scarlett
 		narrateur
 	}
+Histoire5 -- Barman
+Histoire5 -- Brigand
+Histoire5 -- Ripou
+Histoire5 -- Narrateur
 
 
-	INTERFACE HorsLaLoi <<interface>>  implements western.Nommable{
+	INTERFACE HorsLaLoi <<interface>>  implements Nommable{
 
 	}
 
-	CLASS Narrateur  extends western.Personnage {
+	CLASS Narrateur  extends Personnage {
 	}
 
 
@@ -75,29 +87,34 @@ PACKAGE western{
 
 	}
 
-	CLASS Personnage  implements western.Nommable {
+	CLASS Personnage  implements Nommable {
 		BOISSON_PAR_DEFAUT
 		nom
 		boisson
 	}
+Personnage -- Boisson
+Personnage -- Boisson
 
 
-	CLASS Ripou  extends western.Cowboy implements western.HorsLaLoi {
+	CLASS Ripou  extends Cowboy implements HorsLaLoi {
 		brigand
 	}
+Ripou -- Brigand
 
 
-	CLASS Sherif  extends western.Cowboy {
+	CLASS Sherif  extends Cowboy {
 		wanted
 		ravisseur
 		captures
 	}
+Sherif -- HorsLaLoi
 
 
 	CLASS Substantif  {
 		nom
 		genre
 	}
+Substantif -- Genre
 
 
 

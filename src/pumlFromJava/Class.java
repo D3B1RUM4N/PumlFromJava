@@ -7,6 +7,7 @@ import javax.lang.model.element.ElementKind;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.type.DeclaredType;
 import javax.lang.model.type.TypeMirror;
+import java.util.ArrayList;
 import java.util.Optional;
 
 
@@ -16,6 +17,7 @@ import static java.lang.System.lineSeparator;
 public class Class {
 
     Element object;
+    ArrayList<String> agregations = new ArrayList<String>();
     public Class(Element object){
         this.object = object;
     }
@@ -30,11 +32,15 @@ public class Class {
 
         if(!tObject.getSuperclass().toString().contains("java.lang.Object")){
             //System.out.println("SuperClass " + tObject.getSuperclass());
-            res += " extends " + tObject.getSuperclass();
+            int lastIndex = tObject.getSuperclass().toString().lastIndexOf('.');
+            String s1 = (lastIndex != -1) ? tObject.getSuperclass().toString().substring(lastIndex + 1) : tObject.getSuperclass().toString();
+            res += " extends " + s1;
         }
         for(TypeMirror intrfc : tObject.getInterfaces()){
             //System.out.println("interface " + intrfc.toString());
-            res += " implements " + intrfc.toString();
+            int lastIndex = intrfc.toString().lastIndexOf('.');
+            String s1 = (lastIndex != -1) ? intrfc.toString().substring(lastIndex + 1) : intrfc.toString();
+            res += " implements " + s1;
         }
 
 
@@ -46,6 +52,9 @@ public class Class {
             if(methode.getKind() == ElementKind.FIELD){
                 Field field = new Field(methode);
                 res += "\t\t" + field.toDCA() + lineSeparator();
+                if(field.agreg() != null){
+                    agregations.add(field.agreg());
+                }
             }/*else if(methode.getKind() == ElementKind.CONSTRUCTOR){
 
             }else{
@@ -55,6 +64,13 @@ public class Class {
         }
 
         res += "\t}" + lineSeparator();
+
+        for(String agreg : agregations){
+            //System.out.println(object.getSimpleName() + " -- " + agreg + lineSeparator());
+            res += object.getSimpleName() + " -- " + agreg + lineSeparator();
+        }
+
+
 
         return res;
     }

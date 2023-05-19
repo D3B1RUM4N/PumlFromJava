@@ -22,14 +22,16 @@ public class Enum {
 
         TypeElement tObject = (TypeElement) object;
 
-        if(!tObject.getSuperclass().toString().contains("java.lang.Object")){
+        /*if(!tObject.getSuperclass().toString().contains("java.lang.Object")){
             //System.out.println("SuperClass " + tObject.getSuperclass());
             res += " extends " + tObject.getSuperclass();
-        }
+        }*/
         for(TypeMirror intrfc : tObject.getInterfaces()){
             //System.out.println("interface " + intrfc.toString());
             res += " implements " + intrfc.toString();
         }
+
+
 
 
 
