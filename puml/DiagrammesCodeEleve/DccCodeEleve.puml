@@ -63,8 +63,12 @@ package pumlFromJava{
     }
 
 PumlDoclet "recupère le package" --> Package
-Package "recupère la class" --> Class
+Package "récupère la class" --> Class
+Package "récupère l'interface" --> Interface
+Package "récupère l'enum" --> Enum
 Class "recupère les --methodes--" --> Field
+Interface "recupère les --methodes--" --> Field
+Enum "recupère les --methodes--" --> Field
 'Je sais que ça ne s'appelle pas méthode mais gros trou de mémoire
 PumlDoclet "Donne le fichier a ecrire,\n le directory et le nom du fichier" ---l-> PumlDiagram
 
