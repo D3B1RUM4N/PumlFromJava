@@ -1,0 +1,79 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+skinparam classAttributeIconSize 0
+skinparam classFontStyle Bold
+skinparam style strictuml
+
+package pumlFromJava{
+    class PumlDiagram{
+        - stringVal : String
+        + ecriturePUML(val : String, name : String, dir : String)
+    }
+
+    class Java2Puml{
+
+    }
+
+    class PumlDoclet{
+        + getName() : String
+        - fileName : String
+        - dir : String
+        + getSupportedOptions(): Set<? extends Option>
+        + getSupportedSourceVersion() : SourceVersion
+        + run(environment : DocletEnvironment) : Boolean
+        - newPackage : Boolean
+        - havePackage : Boolean
+        - dumpElement(element : Element) : String
+    }
+
+    class Package{
+        -pack : Element
+        +<<Create>>Package(pack : Element)
+        +toDCA() : String
+    }
+
+    class Class{
+        -object : Element
+        +agregations : ArrayList<String>
+        +<<Create>>Class(object : Element)
+        +toDCA() : String
+
+    }
+
+    class Field{
+        -methode : Element
+        +<<Create>>Field:(methode : Element)
+        +toDCA(): String
+        +agreg():String
+
+    }
+
+    class Enum{
+        -object : Element
+        +<<Create>>Enum:(element : Object)
+        +toDCA() : String
+
+    }
+
+    class Interface{
+        -object : Element
+        -<<Create>>Interface : (object : Element)
+        +toDCA() : String
+    }
+
+PumlDoclet "recupère le package" --> Package
+Package "récupère la class" --> Class
+Package "récupère l'interface" --> Interface
+Package "récupère l'enum" --> Enum
+Class "recupère les --methodes--" --> Field
+Interface "recupère les --methodes--" --> Field
+Enum "recupère les --methodes--" --> Field
+'Je sais que ça ne s'appelle pas méthode mais gros trou de mémoire
+PumlDoclet "Donne le fichier a ecrire,\n le directory et le nom du fichier" ---l-> PumlDiagram
+
+}
+
+
+
+@enduml

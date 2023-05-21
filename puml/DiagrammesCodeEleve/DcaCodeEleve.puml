@@ -1,0 +1,54 @@
+@startuml
+
+'UML GENERE PAR CODE :)
+
+skinparam style strictuml
+skinparam classAttributeIconSize 0
+skinparam classFontStyle Bold
+hide empty members
+
+PACKAGE pumlFromJava{
+	CLASS Class{
+		object
+	}
+
+	CLASS Field{
+		methode
+	}
+
+	CLASS Java2Puml{
+	}
+
+	CLASS Package{
+		pack
+	}
+
+	CLASS PumlDiagram{
+		stringVal
+	}
+
+	CLASS PumlDoclet{
+		fileName
+		dir
+		newPackage
+		havePackage
+	}
+
+	 class Enum{
+        }
+
+     class Interface{
+        }
+
+PumlDoclet "recupère le package" --> Package
+Package "récupère la class" --> Class
+Package "récupère l'interface" --> Interface
+Package "récupère l'enum" --> Enum
+Class "récupère les --methodes--" --> Field
+Interface "récupère les --methodes--" --> Field
+Enum "récupère les --methodes--" --> Field
+'Je sais que ça ne s'appelle pas méthode mais gros trou de mémoire
+PumlDoclet "Donne le fichier a ecrire,\n le directory et le nom du fichier" ---l-> PumlDiagram
+
+}
+@enduml
