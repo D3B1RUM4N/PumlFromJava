@@ -20,14 +20,33 @@ public class PumlDiagram {
             "hide empty members" + lineSeparator() +
             lineSeparator();
 
-    public void ecriturePUML(String val, String name, String dir)
+    public void ecriturePUML_DCA(String val, String name, String dir)
     {
         stringVal += val;
         stringVal += lineSeparator() +
                 "@enduml" + lineSeparator();
 
 
-        Path path = Paths.get(dir+name);
+        Path path = Paths.get(dir+"DCA_"+name);
+        try {
+            //String str = "Test creation \n Hello W0rld";
+            byte[] bs = stringVal.getBytes();
+            Path writtenFilePath = Files.write(path, bs);
+            System.out.println("Written content in file:\n"+ new String(Files.readAllBytes(writtenFilePath)));
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void ecriturePUML_DCC(String val, String name, String dir)
+    {
+        stringVal += val;
+        stringVal += lineSeparator() +
+                "@enduml" + lineSeparator();
+
+
+        Path path = Paths.get(dir+"DCC_"+name);
         try {
             //String str = "Test creation \n Hello W0rld";
             byte[] bs = stringVal.getBytes();

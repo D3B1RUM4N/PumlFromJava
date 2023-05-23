@@ -25,7 +25,7 @@ public class Java2Puml
             -out
             pumlCode.puml
             -d
-            ../
+            ./
             -doclet
             pumlFromJava.PumlDoclet
             -docletpath

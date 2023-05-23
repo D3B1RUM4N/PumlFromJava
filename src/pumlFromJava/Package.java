@@ -37,4 +37,36 @@ public class Package {
         return res ;
 
     }
+
+
+
+
+
+
+    public String toDCC(){
+        String res = pack.getKind() + " "  + pack.getSimpleName() + "{" + lineSeparator();
+
+
+        for(Element object : pack.getEnclosedElements()){
+            //System.out.println(object + " / " + object.getSimpleName() + " : " + object.getKind());
+            if(object.getKind() == ElementKind.CLASS){
+                Class objectClass = new Class(object);
+                res += objectClass.toDCC() + lineSeparator() +
+                        lineSeparator();
+            } else if (object.getKind() == ElementKind.INTERFACE) {
+                Interface objectInterface = new Interface(object);
+                res += objectInterface.toDCC() +lineSeparator() +
+                        lineSeparator();
+            } else if (object.getKind() == ElementKind.ENUM) {
+                Enum objectEnum = new Enum(object);
+                res += objectEnum.toDCC() + lineSeparator() +
+                        lineSeparator();
+            }
+        }
+        res += lineSeparator() +
+                "}";
+
+        return res ;
+
+    }
 }

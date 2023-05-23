@@ -17,8 +17,16 @@ public class Field {
         return methode.getSimpleName().toString();
     }
 
+
+    public String toDCC(){
+        Modifier mod = new Modifier(methode.getModifiers());
+        return mod.getModifierString() + methode.getSimpleName().toString();
+    }
+
+
+
     public String agreg(){
-        System.out.println(methode.getSimpleName() + " " + methode.asType());
+        //System.out.println(methode.getSimpleName() + " " + methode.asType());
         if(!methode.asType().toString().contains("java") && !methode.asType().toString().contains("int") && !methode.asType().toString().contains("bool")){
             String s = methode.asType().toString();
             int lastIndex = s.lastIndexOf('.');

@@ -1,0 +1,144 @@
+@startuml
+
+'UML GENERE PAR CODE :)
+
+skinparam style strictuml
+skinparam classAttributeIconSize 0
+skinparam classFontStyle Bold
+hide empty members
+
+PACKAGE western{
+	CLASS Barman  extends Personnage {
+		+<<create>><init>()
+		+<<create>><init>()
+		-bar
+		-clients
+	}
+
+
+	CLASS Boisson  {
+		-substantif
+		+{static}EAU
+		-{static}boissons
+		-<<create>><init>()
+	}
+Boisson -- Substantif
+Boisson -- Boisson
+
+
+	CLASS Brigand  extends Personnage implements HorsLaLoi {
+		#{static}LOOK_PAR_DEFAUT
+		-look
+		-recompense
+		-estLibre
+		-captives
+		-gardien
+		+<<create>><init>()
+		+<<create>><init>()
+		+<<create>><init>()
+		-{static}boissonParDefaut
+	}
+Brigand -- Cowboy
+Brigand -- Boisson
+
+
+	CLASS Cowboy  extends Personnage {
+		-gains
+		-captures
+		+<<create>><init>()
+		+<<create>><init>()
+		-{static}boissonParDefaut
+	}
+Cowboy -- Boisson
+
+
+	CLASS Dame  extends Personnage {
+		-estLibre
+		-sauveur
+		-ravisseur
+		+<<create>><init>()
+		+<<create>><init>()
+		-{static}boissonParDefaut
+	}
+Dame -- Cowboy
+Dame -- HorsLaLoi
+Dame -- Boisson
+
+
+	ENUM Genre<<enum>>{
+
+	}
+
+	CLASS Histoire4  {
+		+<<create>><init>()
+	}
+
+
+	CLASS Histoire5  {
+		<<create>><init>()
+		luke
+		averell
+		scarlett
+		narrateur
+	}
+Histoire5 -- Barman
+Histoire5 -- Brigand
+Histoire5 -- Ripou
+Histoire5 -- Narrateur
+
+
+	INTERFACE HorsLaLoi <<interface>>  implements Nommable{
+
+	}
+
+	CLASS Narrateur  extends Personnage {
+		+<<create>><init>()
+		+<<create>><init>()
+	}
+
+
+	INTERFACE Nommable <<interface>> {
+
+	}
+
+	CLASS Personnage  implements Nommable {
+		-{static}BOISSON_PAR_DEFAUT
+		-nom
+		-boisson
+		+<<create>><init>()
+		+<<create>><init>()
+	}
+Personnage -- Boisson
+Personnage -- Boisson
+
+
+	CLASS Ripou  extends Cowboy implements HorsLaLoi {
+		-brigand
+		+<<create>><init>()
+		+<<create>><init>()
+		+<<create>><init>()
+	}
+Ripou -- Brigand
+
+
+	CLASS Sherif  extends Cowboy {
+		+<<create>><init>()
+		+<<create>><init>()
+		-wanted
+		-ravisseur
+		-captures
+	}
+Sherif -- HorsLaLoi
+
+
+	CLASS Substantif  {
+		-nom
+		-genre
+		+<<create>><init>()
+	}
+Substantif -- Genre
+
+
+
+}
+@enduml
