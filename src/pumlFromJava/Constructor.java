@@ -12,7 +12,10 @@ public class Constructor {
     public String toDCC() {
         String res = "";
         Modifier mod = new Modifier(methode.getModifiers());
-        res += mod.getModifierString() + "<<create>>" + methode.getSimpleName() + "()";
+        res += mod.getModifierString() + "<<create>>" + methode.getEnclosingElement().getSimpleName() + "(";
+        Parameters param = new Parameters(methode.asType());
+        res += param.getParameters();
+
         return res;
     }
 }

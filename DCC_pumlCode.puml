@@ -9,8 +9,8 @@ hide empty members
 
 PACKAGE western{
 	CLASS Barman  extends Personnage {
-		+<<create>><init>()
-		+<<create>><init>()
+		+<<create>>Barman(
+		+<<create>>Barman(
 		-bar
 		-clients
 	}
@@ -20,7 +20,7 @@ PACKAGE western{
 		-substantif
 		+{static}EAU
 		-{static}boissons
-		-<<create>><init>()
+		-<<create>>Boisson(
 	}
 Boisson -- Substantif
 Boisson -- Boisson
@@ -33,9 +33,9 @@ Boisson -- Boisson
 		-estLibre
 		-captives
 		-gardien
-		+<<create>><init>()
-		+<<create>><init>()
-		+<<create>><init>()
+		+<<create>>Brigand(
+		+<<create>>Brigand(
+		+<<create>>Brigand(
 		-{static}boissonParDefaut
 	}
 Brigand -- Cowboy
@@ -45,8 +45,8 @@ Brigand -- Boisson
 	CLASS Cowboy  extends Personnage {
 		-gains
 		-captures
-		+<<create>><init>()
-		+<<create>><init>()
+		+<<create>>Cowboy(
+		+<<create>>Cowboy(
 		-{static}boissonParDefaut
 	}
 Cowboy -- Boisson
@@ -56,8 +56,8 @@ Cowboy -- Boisson
 		-estLibre
 		-sauveur
 		-ravisseur
-		+<<create>><init>()
-		+<<create>><init>()
+		+<<create>>Dame(
+		+<<create>>Dame(
 		-{static}boissonParDefaut
 	}
 Dame -- Cowboy
@@ -70,12 +70,12 @@ Dame -- Boisson
 	}
 
 	CLASS Histoire4  {
-		+<<create>><init>()
+		+<<create>>Histoire4(
 	}
 
 
 	CLASS Histoire5  {
-		<<create>><init>()
+		<<create>>Histoire5(
 		luke
 		averell
 		scarlett
@@ -92,8 +92,8 @@ Histoire5 -- Narrateur
 	}
 
 	CLASS Narrateur  extends Personnage {
-		+<<create>><init>()
-		+<<create>><init>()
+		+<<create>>Narrateur(
+		+<<create>>Narrateur(
 	}
 
 
@@ -105,8 +105,8 @@ Histoire5 -- Narrateur
 		-{static}BOISSON_PAR_DEFAUT
 		-nom
 		-boisson
-		+<<create>><init>()
-		+<<create>><init>()
+		+<<create>>Personnage(
+		+<<create>>Personnage(
 	}
 Personnage -- Boisson
 Personnage -- Boisson
@@ -114,16 +114,16 @@ Personnage -- Boisson
 
 	CLASS Ripou  extends Cowboy implements HorsLaLoi {
 		-brigand
-		+<<create>><init>()
-		+<<create>><init>()
-		+<<create>><init>()
+		+<<create>>Ripou(
+		+<<create>>Ripou(
+		+<<create>>Ripou(
 	}
 Ripou -- Brigand
 
 
 	CLASS Sherif  extends Cowboy {
-		+<<create>><init>()
-		+<<create>><init>()
+		+<<create>>Sherif(
+		+<<create>>Sherif(
 		-wanted
 		-ravisseur
 		-captures
@@ -134,7 +134,7 @@ Sherif -- HorsLaLoi
 	CLASS Substantif  {
 		-nom
 		-genre
-		+<<create>><init>()
+		+<<create>>Substantif(
 	}
 Substantif -- Genre
 
