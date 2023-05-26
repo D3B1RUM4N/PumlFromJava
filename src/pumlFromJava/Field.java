@@ -1,6 +1,9 @@
 package pumlFromJava;
 
 import javax.lang.model.element.Element;
+import javax.lang.model.element.ExecutableElement;
+import javax.lang.model.element.VariableElement;
+import javax.lang.model.type.TypeMirror;
 import java.io.FileDescriptor;
 
 public class Field {
@@ -19,8 +22,28 @@ public class Field {
 
 
     public String toDCC(){
+        String res = "";
         Modifier mod = new Modifier(methode.getModifiers());
-        return mod.getModifierString() + methode.getSimpleName().toString();
+        res += mod.getModifierString() + methode.getSimpleName().toString() + " : ";
+
+
+        // on recupe le Type, et on doit le nettoyer
+        VariableElement variableElement = (VariableElement) methode;
+        String s1;
+        if(variableElement.asType().toString().contains(">")){
+            String s = variableElement.asType().toString();
+            int lastIndex = s.lastIndexOf('.');
+            s1 = (lastIndex != -1) ? s.substring(lastIndex + 1) : s;
+            s1 = s1.substring(0, s1.length()-1) + "[]";
+            System.out.println("s1 apres brico : " + s1);
+        }else{
+            String s = variableElement.asType().toString();
+            int lastIndex = s.lastIndexOf('.');
+            s1 = (lastIndex != -1) ? s.substring(lastIndex + 1) : s;
+            //System.out.println("s1 apres brico : " + s1);
+        }
+        res += s1;
+        return res;
     }
 
 

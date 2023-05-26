@@ -2,17 +2,16 @@ package pumlFromJava;
 
 import javax.lang.model.element.Element;
 
-public class Constructor {
-
+public class Methode {
     Element methode;
-    public Constructor(Element methode) {
+    public Methode(Element methode) {
         this.methode = methode;
     }
 
     public String toDCC() {
         String res = "";
         Modifier mod = new Modifier(methode.getModifiers());
-        res += mod.getModifierString() + "<<create>>" + methode.getEnclosingElement().getSimpleName() + "(";
+        res += mod.getModifierString() + methode.getSimpleName() + "(";
         Parameters param = new Parameters(methode);
         res += param.getParameters() + ")";
         if(param.getRetour().length() > 0){

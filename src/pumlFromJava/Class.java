@@ -116,9 +116,10 @@ public class Class {
             }else if(methode.getKind() == ElementKind.CONSTRUCTOR){
                 Constructor constructor = new Constructor(methode);
                 res += "\t\t" + constructor.toDCC() + lineSeparator();
-            }/*else{
-
-            }*/
+            }else if (methode.getKind() == ElementKind.METHOD){
+                Methode meth = new Methode(methode);
+                res += "\t\t" + meth.toDCC() + lineSeparator();
+            }
 
         }
 
