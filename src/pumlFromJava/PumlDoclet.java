@@ -44,6 +44,8 @@ public class PumlDoclet implements Doclet {
     }
     private String fileName = "classUML.puml";
     private String dir = "./";
+    private boolean doDCC = true;
+    private boolean doDCA = true;
     @Override
     public Set<? extends Option> getSupportedOptions() {
 
@@ -128,6 +130,50 @@ public class PumlDoclet implements Doclet {
             }
         });
 
+        options.add(new Option() {
+
+            @Override
+            public int getArgumentCount() {
+                return 1;
+            }
+
+            @Override
+            public String getDescription() {
+                return "choose the if you want a DCC (c) or a DCA (a). Nothing if both";
+            }
+
+            @Override
+            public Kind getKind() {
+                return Kind.EXTENDED;
+            }
+
+            @Override
+            public List<String> getNames() {
+                List<String> names = new ArrayList<>();
+                names.add("-precise");
+                return names;
+            }
+
+            @Override
+            public String getParameters() {
+                return "type";
+            }
+
+            @Override
+            public boolean process(String option, List<String> arguments) {
+                if(!arguments.get(0).isEmpty()){
+                    if(arguments.get(0) == "a"){
+                        doDCC = false;
+                        doDCA = true;
+                    }else if(arguments.get(0) == "c"){
+                        doDCC = true;
+                        doDCA = false;
+                    }
+                }
+                return true;
+            }
+        });
+
 
         return options;
     }
@@ -153,22 +199,35 @@ public class PumlDoclet implements Doclet {
         System.out.println(environment.getIncludedElements());  //toutes les class du package
 
 
-        String ecriture = "";
 
 
-        for (Element element : environment.getIncludedElements())
-        {
-            if(element.getKind() == ElementKind.PACKAGE){
-                Package pack = new Package(element);
-                ecriture += pack.toDCA();
+        if(doDCA) {
+            String ecritureDCA = "";
+            System.out.println("LE DCAAAA///////////////////////////////////////////////////////////////////////");
+            for (Element element : environment.getIncludedElements()) {
+                if (element.getKind() == ElementKind.PACKAGE) {
+                    Package pack = new Package(element);
+                    ecritureDCA += pack.toDCA();
+                }
             }
-
-
+            PumlDiagram uml = new PumlDiagram();
+            uml.ecriturePUML_DCA(ecritureDCA, fileName, dir);
+        }
+        if(doDCC){
+            String ecritureDCC = "";
+            System.out.println("LE DCCCCCCC///////////////////////////////////////////////////////////////////////");
+            for (Element element : environment.getIncludedElements()) {
+                if (element.getKind() == ElementKind.PACKAGE) {
+                    Package pack = new Package(element);
+                    ecritureDCC += pack.toDCC();
+                }
+            }
+            PumlDiagram uml = new PumlDiagram();
+            uml.ecriturePUML_DCC(ecritureDCC, fileName, dir);
         }
         //System.out.println(ecriture);
 
-        PumlDiagram uml = new PumlDiagram();
-        uml.ecriturePUML(ecriture, fileName, dir);
+
 
         System.out.println(dir+fileName);
 

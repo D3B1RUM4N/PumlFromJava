@@ -58,4 +58,52 @@ public class Enum {
         return res + lineSeparator() +
                 "\t}";
     }
+
+
+
+
+
+
+
+    public String toDCC(){
+        String res ="\t" + object.getKind()+ " " + object.getSimpleName() + "<<enum>>";
+
+        TypeElement tObject = (TypeElement) object;
+
+        /*if(!tObject.getSuperclass().toString().contains("java.lang.Object")){
+            //System.out.println("SuperClass " + tObject.getSuperclass());
+            res += " extends " + tObject.getSuperclass();
+        }*/
+        for(TypeMirror intrfc : tObject.getInterfaces()){
+            //System.out.println("interface " + intrfc.toString());
+            res += " implements " + intrfc.toString();
+        }
+
+
+
+
+
+
+
+        res += "{" + lineSeparator();
+
+        for(Element methode : object.getEnclosedElements()){
+            //System.out.println(methode + " / " + methode.getSimpleName() + " : " + methode.getKind());
+
+            if(methode.getKind() == ElementKind.FIELD){
+                Field field = new Field(methode);
+                res += "\t\t" + field.toDCC() + lineSeparator();
+            }else if(methode.getKind() == ElementKind.CLASS) {
+                System.out.println(object.getKind() + " " + object.getSimpleName() + " " + methode.getSimpleName());
+            }/*else if(methode.getKind() == ElementKind.CONSTRUCTOR){
+
+            }else{
+
+            }*/
+
+        }
+
+        return res + lineSeparator() +
+                "\t}";
+    }
 }
