@@ -8,47 +8,84 @@ skinparam classFontStyle Bold
 hide empty members
 
 PACKAGE pumlFromJava{
-	CLASS Class{
-		object
-	}
+class PumlDiagram{
+        StringVal
+    }
 
-	CLASS Field{
-		methode
-	}
+    class Java2Puml{
 
-	CLASS Java2Puml{
-	}
+    }
+    class PumlDoclet {
+        fileName
+        dir
+        doDCC
+        doDCA
+    }
 
-	CLASS Package{
-		pack
-	}
 
-	CLASS PumlDiagram{
-		stringVal
-	}
+    class Package{
+        pack
+    }
 
-	CLASS PumlDoclet{
-		fileName
-		dir
-		newPackage
-		havePackage
-	}
+    class Class{
+        object
 
-	 class Enum{
+    }
+
+    class Field{
+        methode
+
+    }
+
+    class Enum{
+        object
+
+    }
+
+    class Interface{
+        object
+    }
+
+    class Constructor{
+        methode
+
+    }
+
+    class Methode{
+        methode
+
+
+    }
+
+    class Modifier {
+             modifiers
         }
 
-     class Interface{
-        }
+    class Parameters {
+        element
+
+    }
 
 PumlDoclet "recupère le package" --> Package
+
 Package "récupère la class" --> Class
 Package "récupère l'interface" --> Interface
 Package "récupère l'enum" --> Enum
-Class "récupère les --methodes--" --> Field
-Interface "récupère les --methodes--" --> Field
-Enum "récupère les --methodes--" --> Field
-'Je sais que ça ne s'appelle pas méthode mais gros trou de mémoire
+
+Class  --> Field : récupère les \nvariables\n en global
+Interface  --> Field : récupère les \nvariables\n en global
+Enum  --> Field : récupère les \nvariables\n en global
+
 PumlDoclet "Donne le fichier a ecrire,\n le directory et le nom du fichier" ---l-> PumlDiagram
+Class --> Constructor : créé le constructeur
+
+Interface --> Methode : récupère les \nméthodes\n de l'interface
+Class --> Methode : récupère les \nméthodes\n de la class
+Enum --> Methode : récupère les \nméthodes \nde l'enum
+
+Methode --> Parameters : récupère les \nparamètres\nde chaque\n méthode
+Methode --> Modifier : récupère \nl'attribut\n de la méthode
+Field --> Modifier : récupère \nl'attribut \nde la variable
 
 }
 @enduml
