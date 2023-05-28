@@ -83,7 +83,6 @@ package pumlFromJava{
     }
 
     class Modifier {
-             - modifiers: Set<javax.lang.model.element.Modifier>
              + Modifier(modifiers: Set<javax.lang.model.element.Modifier>)
              + getModifierString(): String
         }
@@ -115,6 +114,8 @@ Enum --> Methode : récupère les \nméthodes \nde l'enum
 Methode --> Parameters : récupère les \nparamètres\nde chaque\n méthode
 Methode --> Modifier : récupère \nl'attribut\n de la méthode
 Field --> Modifier : récupère \nl'attribut \nde la variable
+
+Modifier "*"-->"1" Modifier : -modifiers[]
 }
 
 
