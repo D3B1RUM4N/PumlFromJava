@@ -8,24 +8,26 @@ skinparam style strictuml
 package pumlFromJava{
     class PumlDiagram{
         - stringVal : String
-        + ecriturePUML(val : String, name : String, dir : String)
+        + ecriturePUML_DCA(val: String, name: String, dir: String)
+        + ecriturePUML_DCC(val: String, name: String, dir: String)
     }
 
     class Java2Puml{
 
     }
+    class PumlDoclet {
+        - fileName: String
+        - dir: String
+        - doDCC: boolean
+        - doDCA: boolean
 
-    class PumlDoclet{
-        + getName() : String
-        - fileName : String
-        - dir : String
+        + init(locale: Locale, reporter: Reporter)
+        + getName(): String
         + getSupportedOptions(): Set<? extends Option>
-        + getSupportedSourceVersion() : SourceVersion
-        + run(environment : DocletEnvironment) : Boolean
-        - newPackage : Boolean
-        - havePackage : Boolean
-        - dumpElement(element : Element) : String
+        + getSupportedSourceVersion(): SourceVersion
+        + run(environment: DocletEnvironment): boolean
     }
+
 
     class Package{
         -pack : Element
@@ -38,6 +40,7 @@ package pumlFromJava{
         +agregations : ArrayList<String>
         +<<Create>>Class(object : Element)
         +toDCA() : String
+        +toDCC(): String
 
     }
 
@@ -45,6 +48,7 @@ package pumlFromJava{
         -methode : Element
         +<<Create>>Field:(methode : Element)
         +toDCA(): String
+        +toDCC(): String
         +agreg():String
 
     }
@@ -53,25 +57,64 @@ package pumlFromJava{
         -object : Element
         +<<Create>>Enum:(element : Object)
         +toDCA() : String
+        +toDCC() : String
 
     }
 
     class Interface{
         -object : Element
         -<<Create>>Interface : (object : Element)
-        +toDCA() : String
+        +toDCA(): String
+        +toDCC(): String
+    }
+
+    class Constructor{
+        -methode : Element
+        -<<Create>>Constructor : (methode: Element)
+        +toDCC(): String
+
+    }
+
+    class Methode{
+        -methode : Element
+        -<<Create>>Methode : (methode : Element)
+        +toDCC() : String
+
+    }
+
+    class Modifier {
+             - modifiers: Set<javax.lang.model.element.Modifier>
+             + Modifier(modifiers: Set<javax.lang.model.element.Modifier>)
+             + getModifierString(): String
+        }
+
+    class Parameters {
+        - element: Element
+
+        + Parameters(element: Element)
+        + getParameters(): String
     }
 
 PumlDoclet "recupère le package" --> Package
+
 Package "récupère la class" --> Class
 Package "récupère l'interface" --> Interface
 Package "récupère l'enum" --> Enum
-Class "recupère les --methodes--" --> Field
-Interface "recupère les --methodes--" --> Field
-Enum "recupère les --methodes--" --> Field
-'Je sais que ça ne s'appelle pas méthode mais gros trou de mémoire
-PumlDoclet "Donne le fichier a ecrire,\n le directory et le nom du fichier" ---l-> PumlDiagram
 
+Class  --> Field : récupère les \nvariables\n en global
+Interface  --> Field : récupère les \nvariables\n en global
+Enum  --> Field : récupère les \nvariables\n en global
+
+PumlDoclet "Donne le fichier a ecrire,\n le directory et le nom du fichier" ---l-> PumlDiagram
+Class --> Constructor : créé le constructeur
+
+Interface --> Methode : récupère les \nméthodes\n de l'interface
+Class --> Methode : récupère les \nméthodes\n de la class
+Enum --> Methode : récupère les \nméthodes \nde l'enum
+
+Methode --> Parameters : récupère les \nparamètres\nde chaque\n méthode
+Methode --> Modifier : récupère \nl'attribut\n de la méthode
+Field --> Modifier : récupère \nl'attribut \nde la variable
 }
 
 
