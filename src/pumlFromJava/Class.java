@@ -18,6 +18,7 @@ public class Class {
 
     Element object;
     ArrayList<String> agregations = new ArrayList<String>();
+    ArrayList<String> agregationsNoms = new ArrayList<>();
     public Class(Element object){
         this.object = object;
     }
@@ -109,10 +110,14 @@ public class Class {
 
             if(methode.getKind() == ElementKind.FIELD){
                 Field field = new Field(methode);
-                res += "\t\t" + field.toDCC() + lineSeparator();
                 if(field.agreg() != null){
                     agregations.add(field.agreg());
+                    agregationsNoms.add(field.toDCA());
+                }else {
+                    res += "\t\t" + field.toDCC() + lineSeparator();
                 }
+
+
             }else if(methode.getKind() == ElementKind.CONSTRUCTOR){
                 Constructor constructor = new Constructor(methode);
                 res += "\t\t" + constructor.toDCC() + lineSeparator();
@@ -125,9 +130,11 @@ public class Class {
 
         res += "\t}" + lineSeparator();
 
+        int i = 0;
         for(String agreg : agregations){
             //System.out.println(object.getSimpleName() + " -- " + agreg + lineSeparator());
-            res += object.getSimpleName() + " --> " + agreg + lineSeparator();
+            res += object.getSimpleName() + " o--> " + "\"" +agregationsNoms.get(i) + "\" " + agreg + lineSeparator();
+            i++;
         }
 
 
