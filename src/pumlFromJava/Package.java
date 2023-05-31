@@ -53,6 +53,11 @@ public class Package {
                 Class objectClass = new Class(object);
                 res += objectClass.toDCC() + lineSeparator() +
                         lineSeparator();
+                //les dependances
+                for(String dep : objectClass.getDependences()){
+                    res+= object.getSimpleName() + " ..> " + dep + " : \"<<use>>\"" + lineSeparator();
+                }
+                res+= lineSeparator();
             } else if (object.getKind() == ElementKind.INTERFACE) {
                 Interface objectInterface = new Interface(object);
                 res += objectInterface.toDCC() +lineSeparator() +

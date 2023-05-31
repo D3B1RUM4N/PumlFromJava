@@ -12,17 +12,18 @@ PACKAGE western{
 		+<<create>>Barman(nom : String)
 		+<<create>>Barman(nom : String, nomBar : String)
 		-bar : String
-		-clients : Boisson[]
 		+getNom() : String
 		+getBar() : String
 		+getPseudo() : String
 		+servir(personne : Personnage)
 		+getClients() : Boisson[]
 	}
+Barman o--> "clients \n0..*"Boisson
 
+
+Barman ..> Boisson : "<<use>>"
 
 	CLASS Boisson  {
-		-{static}boissons : Boisson[]
 		+{static}of(nom : String, genre : Genre) : Boisson
 		-<<create>>Boisson(nom : String, genre : Genre)
 		+getNom() : String
@@ -32,16 +33,19 @@ PACKAGE western{
 		+getNomAvecArticleDefini() : String
 		+getNomAvecPreposition(preposition : String) : String
 	}
-Boisson o--> "substantif" Substantif
-Boisson o--> "EAU" Boisson
+Boisson o--> "substantif"Substantif
+Boisson o--> "EAU"Boisson
+Boisson o--> "boissons \n0..*"Boisson
 
+
+Boisson ..> Boisson : "<<use>>"
+Boisson ..> Genre : "<<use>>"
 
 	CLASS Brigand  extends Personnage implements HorsLaLoi {
 		#{static}LOOK_PAR_DEFAUT : String
 		-look : String
 		-recompense : int
 		-estLibre : boolean
-		-captives : Dame[]
 		+<<create>>Brigand(nom : String)
 		+<<create>>Brigand(nom : String, boisson : Boisson)
 		+<<create>>Brigand(nom : String, boisson : Boisson, look : String)
@@ -57,13 +61,16 @@ Boisson o--> "EAU" Boisson
 		+{static}getBoissonParDefaut() : Boisson
 		+{static}setBoissonParDefaut(boisson : Boisson)
 	}
-Brigand o--> "gardien" Cowboy
-Brigand o--> "boissonParDefaut" Boisson
+Brigand o--> "captives \n0..*"Dame
+Brigand o--> "gardien"Cowboy
+Brigand o--> "boissonParDefaut"Boisson
 
+
+Brigand ..> Dame : "<<use>>"
+Brigand ..> Boisson : "<<use>>"
 
 	CLASS Cowboy  extends Personnage {
 		-gains : int
-		-captures : HorsLaLoi[]
 		+<<create>>Cowboy(nom : String)
 		+<<create>>Cowboy(nom : String, boisson : Boisson)
 		+getPseudo() : String
@@ -75,8 +82,11 @@ Brigand o--> "boissonParDefaut" Boisson
 		+{static}getBoissonParDefaut() : Boisson
 		+{static}setBoissonParDefaut(boisson : Boisson)
 	}
-Cowboy o--> "boissonParDefaut" Boisson
+Cowboy o--> "captures \n0..*"HorsLaLoi
+Cowboy o--> "boissonParDefaut"Boisson
 
+
+Cowboy ..> Boisson : "<<use>>"
 
 	CLASS Dame  extends Personnage {
 		-estLibre : boolean
@@ -91,10 +101,13 @@ Cowboy o--> "boissonParDefaut" Boisson
 		+{static}setBoissonParDefaut(boisson : Boisson)
 		+getRavisseur() : HorsLaLoi
 	}
-Dame o--> "sauveur" Cowboy
-Dame o--> "ravisseur" HorsLaLoi
-Dame o--> "boissonParDefaut" Boisson
+Dame o--> "sauveur"Cowboy
+Dame o--> "ravisseur"HorsLaLoi
+Dame o--> "boissonParDefaut"Boisson
 
+
+Dame ..> Boisson : "<<use>>"
+Dame ..> HorsLaLoi : "<<use>>"
 
 	ENUM Genre<<enum>>{
 
@@ -106,13 +119,15 @@ Dame o--> "boissonParDefaut" Boisson
 	}
 
 
+
 	CLASS Histoire5  {
 		<<create>>Histoire5()
 	}
-Histoire5 o--> "luke" Barman
-Histoire5 o--> "averell" Brigand
-Histoire5 o--> "scarlett" Ripou
-Histoire5 o--> "narrateur" Narrateur
+Histoire5 o--> "luke"Barman
+Histoire5 o--> "averell"Brigand
+Histoire5 o--> "scarlett"Ripou
+Histoire5 o--> "narrateur"Narrateur
+
 
 
 	INTERFACE HorsLaLoi <<interface>>  implements Nommable{
@@ -127,6 +142,7 @@ Histoire5 o--> "narrateur" Narrateur
 		+boire()
 		+getPseudo() : String
 	}
+
 
 
 	INTERFACE Nommable <<interface>> {
@@ -146,9 +162,11 @@ Histoire5 o--> "narrateur" Narrateur
 		+{static}getPseudos(personnages : Nommable[]) : String
 		+{static}getBoissonParDefaut() : Boisson
 	}
-Personnage o--> "BOISSON_PAR_DEFAUT" Boisson
-Personnage o--> "boisson" Boisson
+Personnage o--> "BOISSON_PAR_DEFAUT"Boisson
+Personnage o--> "boisson"Boisson
 
+
+Personnage ..> Boisson : "<<use>>"
 
 	CLASS Ripou  extends Cowboy implements HorsLaLoi {
 		+<<create>>Ripou(nom : String)
@@ -165,14 +183,14 @@ Personnage o--> "boisson" Boisson
 		+sePresenter()
 		+liberer(dame : Dame)
 	}
-Ripou o--> "brigand" Brigand
+Ripou o--> "brigand"Brigand
 
+
+Ripou ..> Dame : "<<use>>"
 
 	CLASS Sherif  extends Cowboy {
 		+<<create>>Sherif(nom : String)
 		+<<create>>Sherif(nom : String, boisson : Boisson)
-		-wanted : HorsLaLoi[]
-		-captures : HorsLaLoi[]
 		+getNom() : String
 		+getPseudo() : String
 		+sePresenter()
@@ -181,8 +199,12 @@ Ripou o--> "brigand" Brigand
 		+getWanted() : HorsLaLoi[]
 		+isWanted(horsLaLoi : HorsLaLoi) : boolean
 	}
-Sherif o--> "ravisseur" HorsLaLoi
+Sherif o--> "wanted \n0..*"HorsLaLoi
+Sherif o--> "ravisseur"HorsLaLoi
+Sherif o--> "captures \n0..*"HorsLaLoi
 
+
+Sherif ..> HorsLaLoi : "<<use>>"
 
 	CLASS Substantif  {
 		-nom : String
@@ -204,8 +226,10 @@ Sherif o--> "ravisseur" HorsLaLoi
 		+avecElision(article : String) : String
 		+avecPreposition(preposition : String) : String
 	}
-Substantif o--> "genre" Genre
+Substantif o--> "genre"Genre
 
+
+Substantif ..> Genre : "<<use>>"
 
 
 }

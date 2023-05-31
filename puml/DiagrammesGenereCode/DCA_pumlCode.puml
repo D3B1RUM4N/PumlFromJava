@@ -12,6 +12,7 @@ PACKAGE western{
 		bar
 		clients
 	}
+Barman -- null
 
 
 	CLASS Boisson  {
@@ -21,6 +22,7 @@ PACKAGE western{
 	}
 Boisson -- Substantif
 Boisson -- Boisson
+Boisson -- null
 
 
 	CLASS Brigand  extends Personnage implements HorsLaLoi {
@@ -32,6 +34,7 @@ Boisson -- Boisson
 		gardien
 		boissonParDefaut
 	}
+Brigand -- null
 Brigand -- Cowboy
 Brigand -- Boisson
 
@@ -41,6 +44,7 @@ Brigand -- Boisson
 		captures
 		boissonParDefaut
 	}
+Cowboy -- null
 Cowboy -- Boisson
 
 
@@ -107,7 +111,9 @@ Ripou -- Brigand
 		ravisseur
 		captures
 	}
+Sherif -- null
 Sherif -- HorsLaLoi
+Sherif -- null
 
 
 	CLASS Substantif  {
