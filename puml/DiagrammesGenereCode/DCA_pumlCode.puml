@@ -1,0 +1,122 @@
+@startuml
+
+'UML GENERE PAR CODE :)
+
+skinparam style strictuml
+skinparam classAttributeIconSize 0
+skinparam classFontStyle Bold
+hide empty members
+
+PACKAGE western{
+	CLASS Barman  extends Personnage {
+		bar
+		clients
+	}
+
+
+	CLASS Boisson  {
+		substantif
+		EAU
+		boissons
+	}
+Boisson -- Substantif
+Boisson -- Boisson
+
+
+	CLASS Brigand  extends Personnage implements HorsLaLoi {
+		LOOK_PAR_DEFAUT
+		look
+		recompense
+		estLibre
+		captives
+		gardien
+		boissonParDefaut
+	}
+Brigand -- Cowboy
+Brigand -- Boisson
+
+
+	CLASS Cowboy  extends Personnage {
+		gains
+		captures
+		boissonParDefaut
+	}
+Cowboy -- Boisson
+
+
+	CLASS Dame  extends Personnage {
+		estLibre
+		sauveur
+		ravisseur
+		boissonParDefaut
+	}
+Dame -- Cowboy
+Dame -- HorsLaLoi
+Dame -- Boisson
+
+
+	ENUM Genre<<enum>>{
+
+	}
+
+	CLASS Histoire4  {
+	}
+
+
+	CLASS Histoire5  {
+		luke
+		averell
+		scarlett
+		narrateur
+	}
+Histoire5 -- Barman
+Histoire5 -- Brigand
+Histoire5 -- Ripou
+Histoire5 -- Narrateur
+
+
+	INTERFACE HorsLaLoi <<interface>>  implements Nommable{
+
+	}
+
+	CLASS Narrateur  extends Personnage {
+	}
+
+
+	INTERFACE Nommable <<interface>> {
+
+	}
+
+	CLASS Personnage  implements Nommable {
+		BOISSON_PAR_DEFAUT
+		nom
+		boisson
+	}
+Personnage -- Boisson
+Personnage -- Boisson
+
+
+	CLASS Ripou  extends Cowboy implements HorsLaLoi {
+		brigand
+	}
+Ripou -- Brigand
+
+
+	CLASS Sherif  extends Cowboy {
+		wanted
+		ravisseur
+		captures
+	}
+Sherif -- HorsLaLoi
+
+
+	CLASS Substantif  {
+		nom
+		genre
+	}
+Substantif -- Genre
+
+
+
+}
+@enduml

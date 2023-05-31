@@ -127,7 +127,7 @@ public class Class {
 
         for(String agreg : agregations){
             //System.out.println(object.getSimpleName() + " -- " + agreg + lineSeparator());
-            res += object.getSimpleName() + " -- " + agreg + lineSeparator();
+            res += object.getSimpleName() + " --> " + agreg + lineSeparator();
         }
 
 
