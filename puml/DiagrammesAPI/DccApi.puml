@@ -59,13 +59,13 @@ package model{
     }
 
 Element --> Element : getEnclosingElement()\ngetEnclosedElements()
-Element --> TypeMirror : asType()
+Element o--> TypeMirror : asType()
 Element "1" o--> "*" Modifier : getModifiers()
-Element --> ElementKind : getKind()
-Element --> Name : getSimpleName()
+Element *--> ElementKind : getKind()
+Element o--> Name : getSimpleName()
 ElementKind --> ElementKind : valueOf(name : String)
 ElementKind "1" --> "*" ElementKind : values()
-TypeMirror --> TypeKind : getKind()
+TypeMirror *--> TypeKind : getKind()
 TypeKind --> TypeKind : valueOf(name : String)
 TypeKind "1" --> "*" TypeKind : values()
 Modifier --> Modifier: valueOf(name : String)
