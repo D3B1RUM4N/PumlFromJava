@@ -24,8 +24,7 @@ public class Field {
     public String toDCC(){
         String res = "";
         Modifier mod = new Modifier(methode.getModifiers());
-        res += mod.getModifierString() + methode.getSimpleName().toString() + " : ";
-
+        res += getModifier() + methode.getSimpleName().toString() + " : ";
 
         // on recupe le Type, et on doit le nettoyer
         VariableElement variableElement = (VariableElement) methode;
@@ -46,10 +45,50 @@ public class Field {
         return res;
     }
 
+    public String getModifier(){
+        Modifier vis = new Modifier(methode.getModifiers());
+        return vis.getModifierString();
+    }
+
 
 
     public String agreg(){
-        //System.out.println(methode.getSimpleName() + " " + methode.asType());
+        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEGggggggggggggggg");
+        VariableElement variableElement = (VariableElement) methode;
+
+        //on gere la multiplicité
+        if(variableElement.asType().toString().contains(">")){
+            String s1;
+            String s = variableElement.asType().toString();
+            int lastIndex = s.lastIndexOf('.');
+            s1 = (lastIndex != -1) ? s.substring(lastIndex + 1) : s;
+            s1 =" \\n0..*\"" + s1.substring(0, s1.length()-1);
+            //System.out.println("s1 apres brico : " + s1);
+            return s1;
+        }
+
+        if(!methode.asType().toString().contains("java") && !methode.asType().toString().contains("int") && !methode.asType().toString().contains("bool")){
+            String s = methode.asType().toString();
+            int lastIndex = s.lastIndexOf('.');
+            String s1 = (lastIndex != -1) ? s.substring(lastIndex + 1) : s;
+            return "\"" + s1;
+        }
+
+        System.out.println(methode.getSimpleName() + " " + methode.asType());
+        if(!methode.asType().toString().contains("java") && !methode.asType().toString().contains("int") && !methode.asType().toString().contains("bool")){
+            String s = methode.asType().toString();
+            int lastIndex = s.lastIndexOf('.');
+            String s1 = (lastIndex != -1) ? s.substring(lastIndex + 1) : s;
+            return s1;
+        }
+        return null;
+    }
+
+
+
+    public String agregDCA(){
+
+        System.out.println(methode.getSimpleName() + " " + methode.asType());
         if(!methode.asType().toString().contains("java") && !methode.asType().toString().contains("int") && !methode.asType().toString().contains("bool")){
             String s = methode.asType().toString();
             int lastIndex = s.lastIndexOf('.');
