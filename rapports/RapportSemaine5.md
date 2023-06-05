@@ -5,4 +5,5 @@ Rapport Semaine 5
 (voir branche : Semaine5)
 ---
 
-Modification des diagrammes PUML : ajout des agrégations et compositions.
+Elies : gere les agregations
+Elea : Modification des diagrammes PUML : ajout des agrégations et compositions.
