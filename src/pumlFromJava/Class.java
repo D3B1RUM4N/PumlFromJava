@@ -9,12 +9,14 @@ import java.util.List;
 
 
 import static java.lang.System.lineSeparator;
+import static java.lang.System.setOut;
 
 public class Class {
 
     private Element object;
     private ArrayList<String> agregations = new ArrayList<String>();
     private ArrayList<String> agregationsNoms = new ArrayList<>();
+    private ArrayList<String> agregationsVis = new ArrayList<>();
     public Class(Element object){
         this.object = object;
     }
@@ -49,7 +51,7 @@ public class Class {
             if(methode.getKind() == ElementKind.FIELD){
                 Field field = new Field(methode);
                 res += "\t\t" + field.toDCA() + lineSeparator();
-                if(field.agreg() != null){
+                if(field.agregDCA() != null){
                     agregations.add(field.agregDCA());
                 }
             }/*else if(methode.getKind() == ElementKind.CONSTRUCTOR){
@@ -107,6 +109,7 @@ public class Class {
                 Field field = new Field(methode);
                 if(field.agreg() != null){
                     agregations.add(field.agreg());
+                    agregationsVis.add(field.vis());
                     agregationsNoms.add((field.toDCA()));
                 }else {
                     res += "\t\t" + field.toDCC() + lineSeparator();
@@ -127,7 +130,7 @@ public class Class {
         System.out.println("//////////////////////+++++++++++++++++++++++++++++++++++++++++++++++++++++////////////////////////////////");
         for(String agreg : agregations){
             System.out.println(object.getSimpleName() + " -- " + agreg + lineSeparator());
-            res += object.getSimpleName() + " o--> " + "\"" +agregationsNoms.get(i) + agreg + lineSeparator();
+            res += object.getSimpleName() + " o--> " + "\"" + agregationsVis.get(i) + agregationsNoms.get(i) + " " + agreg + lineSeparator();
             i++;
         }
 
@@ -156,7 +159,14 @@ public class Class {
                     int lastIndex = s.lastIndexOf('.');
                     s1 = (lastIndex != -1) ? s.substring(lastIndex + 1) : s;
                     s1 = s1.substring(0, s1.length()-1);
-                    if(!dependences.contains(s1)){
+
+                    boolean contiens = false;
+                    for(String val : agregations){
+                        if(val.toLowerCase().contains(s1.toLowerCase())){
+                            contiens = true;
+                        }
+                    }
+                    if(!dependences.contains(s1) && !contiens){
                         System.out.println("Dependance nett : " + s1);
                         dependences.add(s1);
                     }
@@ -166,7 +176,15 @@ public class Class {
                     String s = returnType.toString();
                     int lastIndex = s.lastIndexOf('.');
                     String s1 = (lastIndex != -1) ? s.substring(lastIndex + 1) : s;
-                    if(!dependences.contains(s1)){
+
+                    boolean contiens = false;
+                    for(String val : agregations){
+                        if(val.contains(s1)){
+                            contiens = true;
+                        }
+                    }
+
+                    if(!dependences.contains(s1) && !contiens){
                         System.out.println("Dependance nett : " + s1);
                         dependences.add(s1);
                     }

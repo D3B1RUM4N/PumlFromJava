@@ -23,7 +23,7 @@ public class Java2Puml
             -sourcepath
             src/
             -out
-            pumlCode.puml
+            puml/DiagreammesGenereCode/pumlCode.puml
             -d
             ./
             -doclet

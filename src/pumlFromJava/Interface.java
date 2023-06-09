@@ -81,11 +81,13 @@ public class Interface {
                 res += "\t\t" + field.toDCC() + lineSeparator();
             }else if(methode.getKind() == ElementKind.CLASS) {
                 //System.out.println(object.getKind() + " " + object.getSimpleName() + " " + methode.getSimpleName());
-            }/*else if(methode.getKind() == ElementKind.CONSTRUCTOR){
-
-            }else{
-
-            }*/
+            }else if(methode.getKind() == ElementKind.CONSTRUCTOR){
+                Constructor constructor = new Constructor(methode);
+                res += "\t\t" + constructor.toDCC() + lineSeparator();
+            }else if (methode.getKind() == ElementKind.METHOD){
+                Methode meth = new Methode(methode);
+                res += "\t\t" + meth.toDCC() + lineSeparator();
+            }
 
         }
 
