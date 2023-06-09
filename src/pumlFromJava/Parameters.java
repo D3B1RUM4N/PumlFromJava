@@ -7,9 +7,16 @@ import java.util.stream.Collectors;
 public class Parameters {
 
     private Element element;
+    /**
+     * @pumlType constructor
+     */
     public Parameters(Element element) {
         this.element = element;
     }
+
+    /**
+     * @pumlType method
+     */
 
     public String getParameters() {
         String res = "";

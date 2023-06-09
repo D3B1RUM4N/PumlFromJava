@@ -20,6 +20,12 @@ public class PumlDiagram {
             "hide empty members" + lineSeparator() +
             lineSeparator();
 
+
+
+    /**
+     * @pumlType 1..1
+     * @pumlAssociation name="generates"
+     */
     public void ecriturePUML_DCA(String val, String name, String dir)
     {
         stringVal += val;
@@ -39,6 +45,10 @@ public class PumlDiagram {
         }
     }
 
+    /**
+     * @pumlType 1..1
+     * @pumlAssociation name="generates"
+     */
     public void ecriturePUML_DCC(String val, String name, String dir)
     {
         stringVal += val;

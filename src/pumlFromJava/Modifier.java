@@ -5,10 +5,17 @@ import java.util.Set;
 public class Modifier {
 
     private Set<javax.lang.model.element.Modifier> modifiers;
+
+    /**
+     * @pumlType utility
+     */
     public Modifier(Set<javax.lang.model.element.Modifier> modifiers){
         this.modifiers = modifiers;
     }
 
+    /**
+     * @pumlType 1..1
+     */
     public String getModifierString(){
         String res = "";
 

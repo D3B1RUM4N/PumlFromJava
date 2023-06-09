@@ -7,10 +7,20 @@ import static java.lang.System.lineSeparator;
 
 public class Package {
     private Element pack;
+    /**
+     * @pumlType package
+     */
     public Package(Element pack){
         this.pack = pack;
     }
 
+
+    /**
+     * @pumlType method
+     * @pumlAssociation Class
+     * @pumlAssociation Interface
+     * @pumlAssociation Enum
+     */
     public String toDCA(){
         String res = pack.getKind() + " "  + pack.getSimpleName() + "{" + lineSeparator();
 
@@ -42,7 +52,14 @@ public class Package {
 
 
 
-
+    /**
+     * @pumlType method
+     * @pumlAssociation Class
+     * @pumlAssociation Interface
+     * @pumlAssociation Enum
+     * @pumlAggregation
+     * @pumlComposition
+     */
     public String toDCC(){
         String res = pack.getKind() + " "  + pack.getSimpleName() + "{" + lineSeparator();
 
