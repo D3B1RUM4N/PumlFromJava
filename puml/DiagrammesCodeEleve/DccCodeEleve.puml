@@ -97,29 +97,29 @@ package pumlFromJava{
         +getRetour() : String
     }
 
-PumlDoclet "recupère le package" --* Package
+PumlDoclet "recupère le package" --> Package
 
-Package "récupère la class" o-- Class
-Package "récupère l'interface" o-- Interface
-Package "récupère l'enum" o-- Enum
+Package "récupère la class" --> Class
+Package "récupère l'interface" --> Interface
+Package "récupère l'enum" --> Enum
 
 Class  --> Field : récupère les \nvariables\n en global
 
-PumlDoclet "Donne le fichier a ecrire,\n le directory et le nom du fichier" *---l- PumlDiagram
+PumlDoclet "Donne le fichier a ecrire,\n le directory et le nom du fichier" --l-> PumlDiagram
 
-Class o-- Constructor : créé le constructeur
-Class *-- Methode : récupère les \nméthodes\n de la class
+Class --> Constructor : créé le constructeur
+Class --> Methode : récupère les \nméthodes\n de la class
 
-Interface o-- Methode : récupère les \nméthodes\n de l'interface
-Interface  o-- Field : récupère les \nvariables\n en global
+Interface --> Methode : récupère les \nméthodes\n de l'interface
+Interface  --> Field : récupère les \nvariables\n en global
 
-Enum o-- Methode : récupère les \nméthodes \nde l'enum
-Enum  o-- Field : récupère les \nvariables\n en global
+Enum --> Methode : récupère les \nméthodes \nde l'enum
+Enum  --> Field : récupère les \nvariables\n en global
 
-Methode o-- Parameters : récupère les \nparamètres\nde chaque\n méthode
+Methode --> Parameters : récupère les \nparamètres\nde chaque\n méthode
 
-Methode *-- Modifier : récupère \nl'attribut\n de la méthode
-Field *-- Modifier : récupère \nl'attribut \nde la variable
+Methode ---> Modifier : récupère \nl'attribut\n de la méthode
+Field --> Modifier : récupère \nl'attribut \nde la variable
 
 Modifier "*"-->"1" Modifier : -modifiers[]
 }

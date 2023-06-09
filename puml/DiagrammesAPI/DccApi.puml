@@ -19,6 +19,8 @@ package model{
         + {abstract}hashCode() : Integer
         + {abstract}getModifiers(): modifiers[*]
         +{abstract}getSimpleName():Name
+        +{abstract}getKind():ElementKind
+        +{abstract}asType():TypeMirror
 
     }
 
@@ -56,6 +58,7 @@ package model{
          + {abstract}equals(obj : Object) : Boolean
          + {abstract}hashCode() : Integer
          + {abstract}toString() : String
+         + {abstract}geKind():TypeKind
     }
 
     enum TypeKind <<enum>>{
@@ -64,7 +67,7 @@ package model{
 
 Element --> Element : getEnclosingElement()\ngetEnclosedElements()
 Element --> TypeMirror : asType()
-Element  --> "*\n-modifiers" Modifier
+Element  --> "0...*\n-modifiers" Modifier
 Element --> ElementKind : getKind()
 Element --> Name : getSimpleName()
 ElementKind --> ElementKind : valueOf(name : String)
