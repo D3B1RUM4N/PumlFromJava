@@ -5,10 +5,17 @@ import javax.lang.model.element.Element;
 public class Constructor {
 
     Element methode;
+    /**
+     * @pumlType constructor
+     * @pumlAssociation creates
+     */
     public Constructor(Element methode) {
         this.methode = methode;
     }
 
+    /**
+     * @pumlComposition
+     */
     public String toDCC() {
         String res = "";
         Modifier mod = new Modifier(methode.getModifiers());

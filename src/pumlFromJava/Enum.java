@@ -13,10 +13,16 @@ import javax.lang.model.type.TypeMirror;
 
 public class Enum {
     Element object;
+    /**
+     * @pumlType enum
+     */
     public Enum(Element object){
         this.object = object;
     }
 
+    /**
+     * @pumlType 1..1
+     */
     public String toDCA(){
         String res ="\t" + object.getKind()+ " " + object.getSimpleName() + "<<enum>>";
 
@@ -60,11 +66,11 @@ public class Enum {
     }
 
 
-
-
-
-
-
+    /**
+     * @pumlComposition
+     * @pumlAggregation
+     * @pumlAssociation
+     */
     public String toDCC(){
         String res ="\t" + object.getKind()+ " " + object.getSimpleName() + "<<enum>>";
 

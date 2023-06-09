@@ -17,6 +17,9 @@ public class Interface {
         this.object = object;
     }
 
+    /**
+     * @pumlType 1..1
+     */
     public String toDCA(){
         String res ="\t" + object.getKind()+ " " + object.getSimpleName()+ " <<interface>> ";
 
@@ -53,9 +56,11 @@ public class Interface {
     }
 
 
-
-
-
+    /**
+     * @pumlComposition
+     * @pumlAggregation
+     * @pumlAssociation
+     */
 
 
     public String toDCC(){
