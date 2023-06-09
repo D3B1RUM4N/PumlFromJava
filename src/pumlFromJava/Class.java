@@ -159,20 +159,22 @@ public class Class {
                     int lastIndex = s.lastIndexOf('.');
                     s1 = (lastIndex != -1) ? s.substring(lastIndex + 1) : s;
                     s1 = s1.substring(0, s1.length()-1);
-
-                    boolean contiens = false;
-                    for(String val : agregations){
-                        if(val.toLowerCase().contains(s1.toLowerCase())){
-                            contiens = true;
+                    if(!s1.contains("java") && !s1.contains("int") && !s1.contains("bool") && !s1.contains("long")&& !s1.contains("Char") && !s1.contains("Int") && !s1.contains("Double") && !s1.contains("Boolean")) {
+                        boolean contiens = false;
+                        for(String val : agregations){
+                            if(val.toLowerCase().contains(s1.toLowerCase())){
+                                contiens = true;
+                            }
+                        }
+                        if(!dependences.contains(s1) && !contiens){
+                            System.out.println("Dependance nett : " + s1);
+                            dependences.add(s1);
                         }
                     }
-                    if(!dependences.contains(s1) && !contiens){
-                        System.out.println("Dependance nett : " + s1);
-                        dependences.add(s1);
-                    }
-                }
 
-                if(!returnType.toString().contains("java") && !returnType.toString().contains("int") && !returnType.toString().contains("bool") && !returnType.toString().contains("void")){
+                }
+                String w = returnType.toString();
+                if(!w.contains("java") && !w.contains("int") && !w.contains("bool") && !w.contains("long")&& !w.contains("Char") && !w.contains("Int") && !w.contains("Double") && !w.contains("void") && !w.contains("Boolean")) {
                     String s = returnType.toString();
                     int lastIndex = s.lastIndexOf('.');
                     String s1 = (lastIndex != -1) ? s.substring(lastIndex + 1) : s;

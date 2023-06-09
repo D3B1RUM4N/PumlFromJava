@@ -94,7 +94,9 @@ public class Field {
             s1 = (lastIndex != -1) ? s.substring(lastIndex + 1) : s;
             s1 =" \\n0..*\"" + s1.substring(0, s1.length()-1);
             //System.out.println("s1 apres brico : " + s1);
-            return s1;
+            if(!s1.contains("java") && !s1.contains("int") && !s1.contains("bool") && !s1.contains("long")&& !s1.contains("Char") && !s1.contains("Int") && !s1.contains("Double")) {
+                return s1;
+            }
         }
 
         if(!methode.asType().toString().contains("java") && !methode.asType().toString().contains("int") && !methode.asType().toString().contains("bool") && !methode.asType().toString().contains("long")&& !methode.asType().toString().contains("Char") && !methode.asType().toString().contains("Int") && !methode.asType().toString().contains("Double")){
