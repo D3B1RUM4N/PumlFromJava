@@ -5,5 +5,5 @@ Rapport Semaine 5
 (voir branche : Semaine5)
 ---
 
-Elies : gere les agregations
+Elies : gère les agrégations, la visibilité, les <<use>> et la multiplicité.
 Elea : Modification des diagrammes PUML : ajout des agrégations et compositions.
