@@ -21,17 +21,17 @@ enum SourceVersion{}
 ' Désolée après une heure à bouger les flèches dans tous les sens
 ' Je n'ai pas réussi faire plus visible que ca :)
 
-FirstDoclet "récupère le\n nom" *-u-> Class
-DocletEnvironment "demande le nom" *---u-> FirstDoclet
-FirstDoclet "recupere\n les\n options" o---l-> Collection
-FirstDoclet "\n\nverifie \nla \nversion" o--r> SourceVersion
-FirstDoclet "recupere \nnom du \npackage" *--> DocletEnvironment
+FirstDoclet "récupère le\n nom" -u-> Class
+DocletEnvironment "demande le nom" ---u-> FirstDoclet
+FirstDoclet "recupere\n les\n options" ---l-> Collection
+FirstDoclet "\n\nverifie \nla \nversion" --r> SourceVersion
+FirstDoclet "recupere \nnom du \npackage" --> DocletEnvironment
 
 
-FirstDoclet "le type" *--> Element
-FirstDoclet "le nom" *--> Element
-FirstDoclet "le Package" *--> Element
-FirstDoclet "le fonctions" *-d--> Element
-FirstDoclet "le visibilité" *--> Element
+FirstDoclet "le type" --> Element
+FirstDoclet "le nom" --> Element
+FirstDoclet "le Package" --> Element
+FirstDoclet "le fonctions" -d--> Element
+FirstDoclet "le visibilité" --> Element
 
 @enduml

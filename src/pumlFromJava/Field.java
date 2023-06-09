@@ -15,12 +15,18 @@ public class Field {
     public Field(Element methode){
         this.methode = methode;
     }
-
+    /**
+     * @pumlType 1..1
+     */
     public String toDCA(){
         return methode.getSimpleName().toString();
     }
 
-
+    /**
+     * @pumlComposition
+     * @pumlAggregation
+     * @pumlAssociation
+     */
     public String toDCC(){
         String res = "";
         res += vis() + methode.getSimpleName().toString() + " : ";

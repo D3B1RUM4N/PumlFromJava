@@ -20,10 +20,16 @@ public class Enum {
     private ArrayList<String> agregationsNoms = new ArrayList<>();
     private ArrayList<String> agregationsVis = new ArrayList<>();
     Element object;
+    /**
+     * @pumlType enum
+     */
     public Enum(Element object){
         this.object = object;
     }
 
+    /**
+     * @pumlType 1..1
+     */
     public String toDCA(){
         String res ="\t" + object.getKind()+ " " + object.getSimpleName() + "<<enum>>";
 
@@ -67,11 +73,11 @@ public class Enum {
     }
 
 
-
-
-
-
-
+    /**
+     * @pumlComposition
+     * @pumlAggregation
+     * @pumlAssociation
+     */
     public String toDCC(){
         String res ="\t" + object.getKind()+ " " + object.getSimpleName() + "<<enum>>";
 

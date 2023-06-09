@@ -17,11 +17,18 @@ public class Class {
     private ArrayList<String> agregations = new ArrayList<String>();
     private ArrayList<String> agregationsNoms = new ArrayList<>();
     private ArrayList<String> agregationsVis = new ArrayList<>();
+
+    /**
+     * @pumlType constructor
+     */
     public Class(Element object){
         this.object = object;
     }
 
-
+    /**
+     * @pumlType method
+     * @pumlAssociation
+     */
     public String toDCA(){
         String res = "\t" + object.getKind() + " " + object.getSimpleName() + " ";
         //pour les interface implementée et class herité :
@@ -78,7 +85,11 @@ public class Class {
 
 
 
-
+    /**
+     * @pumlComposition
+     * @pumlAggregation
+     * @pumlAssociation
+     */
 
     public String toDCC(){
         String res = "\t" + object.getKind() + " " + object.getSimpleName() + " ";
