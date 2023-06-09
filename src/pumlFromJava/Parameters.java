@@ -56,16 +56,40 @@ public class Parameters {
                     // et on remplace ce caractere par les []
                     typeParamNettoye = typeParamNettoye.substring(0, typeParamNettoye.length()-1) + "[]";
                 }
+                System.out.print("///////////// : " + typeParamNettoye);
+                switch (typeParamNettoye) {
+                    case "boolean":
+                        typeParamNettoye = "Boolean";
+                    case "byte":
+                        typeParamNettoye = "Byte";
+                    case "short":
+                        typeParamNettoye = "Short";
+                    case "int":
+                        typeParamNettoye = "Integer";
+                    case "long":
+                        typeParamNettoye = "Integer";
+                    case "float":
+                        typeParamNettoye = "Real";
+                    case "double":
+                        typeParamNettoye = "Real";
+                    default:
+                        typeParamNettoye = typeParamNettoye;
+                }
+                System.out.println("\t///////////// : " + typeParamNettoye);
+
 
                 // Former le nouveau paramètre avec le nom et le type simplifiés
                 String newParam = nomParam + " : " + typeParamNettoye;
 
                 // Remplacer l'ancien paramètre par le nouveau paramètre dans le tableau
+                //lsParam[i] = newParam;
                 lsParam[i] = newParam;
             }
 
             // Joindre les paramètres avec une virgule et un espace
             res += String.join(", ", lsParam);
+
+
             //System.out.println("test raffiné : " + res);
         }
 
@@ -170,9 +194,23 @@ public class Parameters {
             s1 = (lastIndex != -1) ? s.substring(lastIndex + 1) : s;
             //System.out.println("s1 apres brico : " + s1);
         }
-        if(s1.equals("void")){
-            return "";
+        switch (s1) {
+            case "boolean":
+                return "Boolean";
+            case "byte":
+                return "Byte";
+            case "short":
+                return "Short";
+            case "int", "long":
+                return "Integer";
+            case "float", "double":
+                return "Real";
+            case "char":
+                return "Char";
+            case "void":
+                return "";
+            default:
+                return s1;
         }
-        return s1;
     }
 }
